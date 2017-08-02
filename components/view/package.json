@@ -1,6 +1,6 @@
 {
   "name": "@uikit/view",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "View component",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -27,7 +27,7 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/styled": "^0.0.4"
+    "@uikit/styled": "^0.0.5"
   },
   "devDependencies": {
     "react": "^15.5.4"
