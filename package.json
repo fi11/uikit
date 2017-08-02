@@ -1,0 +1,47 @@
+{
+  "name": "uikit",
+  "version": "0.0.1",
+  "description": "Kit for create react ui components",
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fi11/uikit"
+  },
+  "bugs": {
+    "url": "https://github.com/fi11/uikit/issues"
+  },
+  "keywords": [
+    "ui",
+    "react"
+  ],
+  "homepage": "https://github.com/fi11/uikit",
+  "scripts": {
+    "test": "jest --projects ./",
+    "storybook": "start-storybook -p 9010",
+    "bootstrap": "lerna bootstrap",
+    "fmt": "prettier --single-quote --trailing-comma=all --write 'src/**/*.js'"
+  },
+  "author": "Pavel Silin",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-knobs": "^3.2.0",
+    "@storybook/addons": "^3.2.0",
+    "@storybook/react": "^3.2.3",
+    "babel-cli": "6.24.1",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.23.0",
+    "babel-plugin-transform-strict-mode": "^6.24.1",
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1",
+    "chalk": "^2.0.1",
+    "jest": "^20.0.4",
+    "lerna": "^2.0.0",
+    "prettier": "^1.5.3",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "shelljs": "^0.7.8"
+  }
+}

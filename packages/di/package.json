@@ -1,0 +1,29 @@
+{
+  "name": "@uikit/di",
+  "version": "0.0.3",
+  "description": "Simple dependency injection library",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fi11/uikit"
+  },
+  "bugs": {
+    "url": "https://github.com/fi11/uikit/issues"
+  },
+  "keywords": [
+    "dependency injection",
+    "di"
+  ],
+  "homepage": "https://github.com/fi11/uikit",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "node ../../scripts/prepublish.js"
+  },
+  "author": "Pavel Silin",
+  "license": "MIT"
+}

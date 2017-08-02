@@ -1,0 +1,14 @@
+.DS_Store
+.idea
+.cache
+coverage
+
+npm-debug.log
+node_modules
+dist
+
+styleguide
+storybook
+
+lerna-debug.log
+
