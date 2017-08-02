@@ -12,10 +12,10 @@ const styles = {
 };
 
 if (typeof window !== undefined) {
-  styles.zIndex = '999';
+  styles.root.zIndex = '999';
 }
-
 const OverlayStyled = styled(styles);
+
 const Overlay = ({ color, opacity }) =>
   <OverlayStyled style={{ backgroundColor: color, opacity }} />;
 

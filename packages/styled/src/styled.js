@@ -4,10 +4,12 @@ import StyleSheet from './StyleSheet';
 const getClassName = (prefix, name) => `${prefix}_${name}`.replace(/:/g, '-');
 const createElement = React.createElement.bind(React);
 
+let View;
+
 const styled = (element, styleRules) => {
   if (typeof styleRules === 'undefined') {
     styleRules = element;
-    element = styled('div.View', {
+    element = View || styled('div.View', {
       root: {
         display: 'flex',
         flexShrink: 0,

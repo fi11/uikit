@@ -1,14 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import styled from './index';
-
-const View = styled({
-  root: {
-    display: 'flex',
-    flexShrink: 0,
-    boxSizing: 'border-box',
-  }
-});
+import styled from '@uikit/styled';
+import View from './View';
 
 const Link = styled('a.Link', {
   root: {
