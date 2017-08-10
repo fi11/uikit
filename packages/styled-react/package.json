@@ -1,7 +1,7 @@
 {
   "name": "@uikit/styled-react",
   "version": "0.0.5",
-  "description": "React environment for styled",
+  "description": "React environment for styled lib",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
