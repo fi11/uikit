@@ -48,6 +48,17 @@ const SquareWithThemedBorder = styled(RedSquareWithBoarder, {
   }
 });
 
+
+const BlackSquareWithSize = styled(RedSquareWithBoarder, {
+    root: {
+      backgroundColor: 'black',
+    },
+    size: (size) => ({
+      width: 200,
+      height: 200,
+    }),
+});
+
 storiesOf('View', module)
   .add('flex box', () => (
     <View style={{ width: 300, justifyContent: 'space-between', background: '#ccc', padding: 10 }}>
@@ -72,4 +83,7 @@ storiesOf('View', module)
   ))
   .add('styled view with theme', () => (
     <SquareWithThemedBorder hasBorder theme="green" white />
+  ))
+  .add('styled view with style rule as func', () => (
+    <BlackSquareWithSize size={200} />
   ));

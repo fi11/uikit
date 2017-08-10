@@ -28,7 +28,14 @@ const styled = (element, styleRules) => {
   if (element.__IS_WRAPPER__) {
     const prevStyles = element.getRawStyles();
     styleRules = Object.keys(styleRules).reduce((result, key) => {
-      result[key] = { ...prevStyles[key], ...styleRules[key] };
+      if (typeof styleRules[key] === 'function') {
+          result[key] = styleRules[key];
+      } else {
+          result[key] = {
+              ...prevStyles[key],
+              ...styleRules[key]
+          };
+      }
 
       return result;
     }, { ...prevStyles });
@@ -40,8 +47,14 @@ const styled = (element, styleRules) => {
 
   elementName = elementName || 's';
 
+  const styleRulesAsFunc = {};
+
   const classNames = StyleSheet.create(Object.keys(styleRules).reduce((result, key) => {
-    result[getClassName(elementName, key)] = styleRules[key];
+    const rule = styleRules[key];
+
+    const container = typeof rule === 'object' ? result : styleRulesAsFunc;
+
+    container[getClassName(elementName, key)] = styleRules[key];
 
     return result;
   }, {}));
@@ -65,19 +78,22 @@ const styled = (element, styleRules) => {
         return result;
       }
 
-      if (propValue) {
-        if (typeof propValue === 'function') {
-          throw new Error('styles as function not support yet');
-        }
+        if (propValue) {
+          if (typeof styleRules[key] === 'function') {
+            result.push(StyleSheet.create({
+                [key]: styleRulesAsFunc[getClassName(elementName, key)](propValue),
+            })[key]);
+            return result;
+          }
 
-        if (/:\w+/g.test(key)) {
-          const cn = classNames[getClassName(elementName, `${clearKey}:${propValue}`)];
-          cn && result.push(cn);
+          if (/:\w+/g.test(key)) {
+            const cn = classNames[getClassName(elementName, `${clearKey}:${propValue}`)];
+            cn && result.push(cn);
 
-          return result;
-        }
+            return result;
+          }
 
-        result.push(classNames[getClassName(elementName, key)]);
+          result.push(classNames[getClassName(elementName, key)]);
       }
 
       return result;
