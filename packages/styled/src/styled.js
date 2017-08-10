@@ -68,6 +68,7 @@ const styled = (element, styleRules) => {
           '',
         )}(props){ return createElement(props) }`,
   )((props) => {
+
     const styles = Object.keys(styleRules).reduce((result, key) => {
       const clearKey = key.replace(/:\w+/g, '');
       const propValue = props[clearKey];
@@ -99,9 +100,16 @@ const styled = (element, styleRules) => {
       return result;
     }, []);
 
+    const newProps = Object.keys(props).reduce((result, key) => {
+      if (!styleRules[key]) {
+          result[key] = props[key];
+      }
+
+      return result;
+    }, {});
 
     return createElement(tag, {
-      ...props,
+      ...newProps,
       className: styles.join(' '),
     });
   });

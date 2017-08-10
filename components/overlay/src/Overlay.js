@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from '@uikit/styled';
+import DI from '@uikit/di';
+
+const styled = DI.get('@uikit/styled');
 
 const styles = {
   root: {
@@ -9,15 +10,25 @@ const styles = {
     bottom: 0,
     left: 0,
   },
+  color: color => ({
+    background: color,
+  }),
+  opacity: opacity => ({
+    opacity,
+  }),
 };
 
 if (typeof window !== undefined) {
   styles.root.zIndex = '999';
 }
-const OverlayStyled = styled(styles);
 
-const Overlay = ({ color, opacity }) =>
-  <OverlayStyled style={{ backgroundColor: color, opacity }} />;
+const Overlay = styled(styles);
+// const Overlay = ({ color, opacity }) => createElement(OverlayStyled, {
+//   style: {
+//     backgroundColor: color,
+//       opacity
+//   },
+// });
 
 Overlay.defaultProps = {
   color: '#fff',
