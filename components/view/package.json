@@ -30,9 +30,11 @@
     "@uikit/styled": "^0.0.5"
   },
   "devDependencies": {
-    "react": "^15.5.4"
+    "react": "^15.5.4",
+    "@uikit/styled-react": "^0.0.5"
   },
   "peerDependencies": {
-    "react": "^15.5.4"
+    "react": "^15.5.4",
+    "@uikit/styled-react": "^0.0.5"
   }
 }

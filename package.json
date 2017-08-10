@@ -21,6 +21,7 @@
     "test": "jest --projects ./",
     "storybook": "start-storybook -p 9010",
     "bootstrap": "lerna bootstrap",
+    "publish": "lerna publish",
     "fmt": "prettier --single-quote --trailing-comma=all --write 'src/**/*.js'"
   },
   "author": "Pavel Silin",

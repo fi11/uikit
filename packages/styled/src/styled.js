@@ -1,12 +1,13 @@
-import React from 'react';
-import StyleSheet from './StyleSheet';
+import DI from '@uikit/di';
 
 const getClassName = (prefix, name) => `${prefix}_${name}`.replace(/:/g, '-');
-const createElement = React.createElement.bind(React);
 
 let View;
 
 const styled = (element, styleRules) => {
+  const createElement = DI.get('@uikit/createElement');
+  const StyleSheet = DI.get('@uikit/StyleSheet');
+
   if (typeof styleRules === 'undefined') {
     styleRules = element;
     element = View || styled('div.View', {
