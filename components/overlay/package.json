@@ -1,6 +1,6 @@
 {
   "name": "@uikit/overlay",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Overlay component",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@uikit/styled": "^0.0.6",
-    "@uikit/styled-react": "^0.0.7",
+    "@uikit/styled-react": "^0.0.8",
     "react": "^15.5.4"
   }
 }
