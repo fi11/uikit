@@ -1,6 +1,6 @@
 {
   "name": "@uikit/dispatcher",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Simple dispatcher",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -16,8 +16,7 @@
     "url": "https://github.com/fi11/uikit/issues"
   },
   "keywords": [
-    "dependency injection",
-    "di"
+    "dispatcher"
   ],
   "homepage": "https://github.com/fi11/uikit",
   "scripts": {
