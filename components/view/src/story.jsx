@@ -7,7 +7,7 @@ import View from './View';
 const Link = styled('a.Link', {
   root: {
     color: '#61dafb',
-  }
+  },
 });
 
 const BlackSquare = styled(View, {
@@ -21,7 +21,7 @@ const BlackSquare = styled(View, {
 const RedSquare = styled(BlackSquare, {
   root: {
     backgroundColor: 'red',
-  }
+  },
 });
 
 const RedSquareWithBoarder = styled(RedSquare, {
@@ -33,7 +33,7 @@ const RedSquareWithBoarder = styled(RedSquare, {
   },
   white: {
     backgroundColor: 'white',
-  }
+  },
 });
 
 const SquareWithThemedBorder = styled(RedSquareWithBoarder, {
@@ -45,23 +45,38 @@ const SquareWithThemedBorder = styled(RedSquareWithBoarder, {
   },
   'theme:green': {
     border: '3px solid green',
-  }
+  },
 });
 
-
 const BlackSquareWithSize = styled(RedSquareWithBoarder, {
-    root: {
-      backgroundColor: 'black',
-    },
-    size: (size) => ({
-      width: 200,
-      height: 200,
-    }),
+  root: {
+    backgroundColor: 'black',
+  },
+  size: size => ({
+    width: size,
+    height: size,
+  }),
+});
+
+const SomeComponent = ({ className }) => <div className={className} />;
+const NotView = styled(SomeComponent, {
+  root: {
+    width: 200,
+    height: 200,
+    backgroundColor: '#333',
+  },
 });
 
 storiesOf('View', module)
   .add('flex box', () => (
-    <View style={{ width: 300, justifyContent: 'space-between', background: '#ccc', padding: 10 }}>
+    <View
+      style={{
+        width: 300,
+        justifyContent: 'space-between',
+        background: '#ccc',
+        padding: 10,
+      }}
+    >
       <View>1</View>
       <View>2</View>
       <View>3</View>
@@ -72,18 +87,13 @@ storiesOf('View', module)
       React
     </Link>
   ))
-  .add('styled view', () => (
-    <BlackSquare />
-  ))
-  .add('styled view extend', () => (
-    <RedSquare />
-  ))
-  .add('styled view with conditional', () => (
-    <RedSquareWithBoarder hasBorder />
-  ))
+  .add('styled view', () => <BlackSquare />)
+  .add('styled view extend', () => <RedSquare />)
+  .add('styled view with conditional', () => <RedSquareWithBoarder hasBorder />)
   .add('styled view with theme', () => (
     <SquareWithThemedBorder hasBorder theme="green" white />
   ))
   .add('styled view with style rule as func', () => (
-    <BlackSquareWithSize size={200} />
-  ));
+    <BlackSquareWithSize size={400} />
+  ))
+  .add('styled not view component', () => <NotView />);

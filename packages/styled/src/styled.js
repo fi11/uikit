@@ -1,63 +1,42 @@
 import DI from '@uikit/di';
 
-const getClassName = (prefix, name) => `${prefix}_${name}`.replace(/:/g, '-');
-
-let View;
-
 const styled = (element, styleRules) => {
   const createElement = DI.get('@uikit/createElement');
-  const StyleSheet = DI.get('@uikit/StyleSheet');
+  const compileStyles = DI.get('@uikit/compileStyles');
+  const getView = DI.get('@uikit/getView');
+  const createStyleProps = DI.get('@uikit/createStyleProps');
 
   if (typeof styleRules === 'undefined') {
     styleRules = element;
-    element = View || styled('div.View', {
-      root: {
-        display: 'flex',
-        flexShrink: 0,
-        boxSizing: 'border-box',
-      }
-    });
-  }
-
-  if (!element.__IS_WRAPPER__ && typeof element !== 'string') {
-    throw new Error(
-      'styled error: you must use string or another styled component as element argument',
-    );
+    element = getView(styled);
   }
 
   if (element.__IS_WRAPPER__) {
     const prevStyles = element.getRawStyles();
-    styleRules = Object.keys(styleRules).reduce((result, key) => {
-      if (typeof styleRules[key] === 'function') {
+    styleRules = Object.keys(styleRules).reduce(
+      (result, key) => {
+        if (typeof styleRules[key] === 'function') {
           result[key] = styleRules[key];
-      } else {
+        } else {
           result[key] = {
-              ...prevStyles[key],
-              ...styleRules[key]
+            ...prevStyles[key],
+            ...styleRules[key],
           };
-      }
+        }
 
-      return result;
-    }, { ...prevStyles });
+        return result;
+      },
+      { ...prevStyles },
+    );
   }
 
   let [tag, elementName] = element.__IS_WRAPPER__
     ? [element.getTagName(), element.name || element.getElementName()]
-    : element.split('.');
+    : typeof element === 'string' ? element.split('.') : [null, element.name];
 
   elementName = elementName || 's';
 
-  const styleRulesAsFunc = {};
-
-  const classNames = StyleSheet.create(Object.keys(styleRules).reduce((result, key) => {
-    const rule = styleRules[key];
-
-    const container = typeof rule === 'object' ? result : styleRulesAsFunc;
-
-    container[getClassName(elementName, key)] = styleRules[key];
-
-    return result;
-  }, {}));
+  const compiledStyles = compileStyles(elementName, styleRules);
 
   const Wrapper = new Function(
     'createElement',
@@ -67,34 +46,31 @@ const styled = (element, styleRules) => {
           /^Styled/,
           '',
         )}(props){ return createElement(props) }`,
-  )((props) => {
-
+  )(props => {
     const styles = Object.keys(styleRules).reduce((result, key) => {
       const clearKey = key.replace(/:\w+/g, '');
       const propValue = props[clearKey];
 
       if (key === 'root') {
-        result.push(classNames[getClassName(elementName, key)]);
+        result.push(compiledStyles.get(key));
 
         return result;
       }
 
-        if (propValue) {
-          if (typeof styleRules[key] === 'function') {
-            result.push(StyleSheet.create({
-                [key]: styleRulesAsFunc[getClassName(elementName, key)](propValue),
-            })[key]);
-            return result;
-          }
+      if (propValue) {
+        if (typeof styleRules[key] === 'function') {
+          result.push(compiledStyles.get(key, propValue));
+          return result;
+        }
 
-          if (/:\w+/g.test(key)) {
-            const cn = classNames[getClassName(elementName, `${clearKey}:${propValue}`)];
-            cn && result.push(cn);
+        if (/:\w+/g.test(key)) {
+          const st = compiledStyles.get(key);
+          st && result.push(st);
 
-            return result;
-          }
+          return result;
+        }
 
-          result.push(classNames[getClassName(elementName, key)]);
+        result.push(compiledStyles.get(key));
       }
 
       return result;
@@ -102,15 +78,15 @@ const styled = (element, styleRules) => {
 
     const newProps = Object.keys(props).reduce((result, key) => {
       if (!styleRules[key]) {
-          result[key] = props[key];
+        result[key] = props[key];
       }
 
       return result;
     }, {});
 
-    return createElement(tag, {
+    return createElement(tag || element, {
       ...newProps,
-      className: styles.join(' '),
+      ...createStyleProps(styles),
     });
   });
 

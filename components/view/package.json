@@ -22,16 +22,20 @@
   "homepage": "https://github.com/fi11/uikit",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "node ../../scripts/prepublish.js"
+    "prepublish": "node ../../scripts/prepublish.js",
+    "storybook": "start-storybook -p 9010"
   },
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/di": "^0.0.6",
-    "@uikit/styled": "^0.0.6"
+    "@uikit/di": "^0.0.8",
+    "@uikit/styled": "^0.0.8"
   },
   "devDependencies": {
     "@uikit/styled-react": "^0.0.8",
-    "react": "^15.5.4"
+    "react": "^15.5.4",
+    "@storybook/addon-knobs": "^3.2.8",
+    "@storybook/addons": "^3.2.6",
+    "@storybook/react": "^3.2.8"
   }
 }

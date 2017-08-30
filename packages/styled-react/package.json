@@ -29,9 +29,9 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/di": "^0.0.6",
-    "@uikit/styled": "^0.0.6",
-    "@uikit/stylesheet": "^0.0.6"
+    "@uikit/di": "^0.0.8",
+    "@uikit/styled": "^0.0.8",
+    "@uikit/stylesheet": "^0.0.8"
   },
   "devDependencies": {
     "react": "^15.5.4"

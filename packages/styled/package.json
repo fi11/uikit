@@ -29,12 +29,7 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/di": "^0.0.6",
-    "jss": "8.1.0",
-    "jss-camel-case": "5.0.0",
-    "jss-default-unit": "7.0.0",
-    "jss-nested": "5.0.0",
-    "jss-vendor-prefixer": "6.0.0"
+    "@uikit/di": "^0.0.8"
   },
   "devDependencies": {
     "react": "^15.5.4"
