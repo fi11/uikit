@@ -1,6 +1,6 @@
 {
   "name": "@uikit/styled-rn",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "React Native environment for styled lib",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -30,7 +30,7 @@
   "license": "MIT",
   "dependencies": {
     "@uikit/di": "^0.0.8",
-    "@uikit/styled": "^0.0.9"
+    "@uikit/styled": "^0.0.10"
   },
   "devDependencies": {
     "react-native": "^0.47.2"

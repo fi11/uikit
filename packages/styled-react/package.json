@@ -1,6 +1,6 @@
 {
   "name": "@uikit/styled-react",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "React environment for styled lib",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -30,7 +30,7 @@
   "license": "MIT",
   "dependencies": {
     "@uikit/di": "^0.0.8",
-    "@uikit/styled": "^0.0.9",
+    "@uikit/styled": "^0.0.10",
     "@uikit/stylesheet": "^0.0.9"
   },
   "devDependencies": {
