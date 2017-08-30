@@ -64,7 +64,7 @@ const styled = (element, styleRules) => {
         }
 
         if (/:\w+/g.test(key)) {
-          const st = compiledStyles.get(key);
+          const st = compiledStyles.get(`${clearKey}:${propValue}`);
           st && result.push(st);
 
           return result;
