@@ -1,6 +1,6 @@
 {
   "name": "@uikit/styled",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Helper to create styled react component with css in js",
   "main": "dist/index.js",
   "module": "dist/index.js",
