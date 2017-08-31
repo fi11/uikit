@@ -1,10 +1,29 @@
 import DI from '@uikit/di';
+import React from 'react';
+
+const removeTrashFormProps = (props, styleRules) => {
+  const propsToDelete = Object.keys(styleRules)
+    .map(i => i.replace(/:.+$/, ''))
+    .reduce((result, key) => {
+      result[key] = true;
+
+      return result;
+    }, {});
+
+  return Object.keys(props).reduce((result, key) => {
+    if (!propsToDelete[key]) {
+      result[key] = props[key];
+    }
+
+    return result;
+  }, {});
+};
 
 const styled = (element, styleRules) => {
   const createElement = DI.get('@uikit/createElement');
   const compileStyles = DI.get('@uikit/compileStyles');
   const getView = DI.get('@uikit/getView');
-  const createStyleProps = DI.get('@uikit/createStyleProps');
+  const createStyleProp = DI.get('@uikit/createStyleProp');
 
   if (typeof styleRules === 'undefined') {
     styleRules = element;
@@ -37,16 +56,7 @@ const styled = (element, styleRules) => {
   elementName = elementName || 's';
 
   const compiledStyles = compileStyles(elementName, styleRules);
-
-  const Wrapper = new Function(
-    'createElement',
-    `return function Styled${elementName === 's'
-      ? elementName
-      : elementName.replace(
-          /^Styled/,
-          '',
-        )}(props){ return createElement(props) }`,
-  )(props => {
+  const getComponentProps = props => {
     const styles = Object.keys(styleRules).reduce((result, key) => {
       const clearKey = key.replace(/:\w+/g, '');
       const propValue = props[clearKey];
@@ -76,26 +86,23 @@ const styled = (element, styleRules) => {
       return result;
     }, []);
 
-    const newProps = Object.keys(props).reduce((result, key) => {
-      if (!styleRules[key]) {
-        result[key] = props[key];
-      }
+    const styleProp = createStyleProp(styles);
 
-      return result;
-    }, {});
+    return {
+      ...removeTrashFormProps(props, styleRules),
+      [styleProp.key]: props[styleProp.key] || styleProp.value,
+    };
+  };
 
-    return createElement(tag || element, {
-      ...newProps,
-      ...createStyleProps(styles),
-    });
-  });
+  const Styled = props =>
+    createElement(tag || element, getComponentProps(props));
 
-  Wrapper.getRawStyles = () => ({ ...styleRules });
-  Wrapper.getTagName = () => tag;
-  Wrapper.getElementName = () => elementName;
-  Wrapper.__IS_WRAPPER__ = true;
+  Styled.getRawStyles = () => ({ ...styleRules });
+  Styled.getTagName = () => tag;
+  Styled.getElementName = () => elementName;
+  Styled.__IS_WRAPPER__ = true;
 
-  return Wrapper;
+  return Styled;
 };
 
 export default styled;
