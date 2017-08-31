@@ -10,5 +10,5 @@ export default () => {
       code: EMAIL_INVALID,
       isValid: re.test(value),
     };
-  }
-}
+  };
+};

@@ -33,11 +33,13 @@ export default class Dispatcher {
     const len = this._callbackCount;
     if (this._isStrictMode) {
       if (this._isPending) {
-        throw new Error(`Dispatcher error: can't dispatch message during dispatching previous`);
+        throw new Error(
+          `Dispatcher error: can't dispatch message during dispatching previous`,
+        );
       }
       this._isPending = true;
     }
-    
+
     if (this._isReverse) {
       for (let i = len - 1; i > -1; i--) {
         this._callCallback(i, payload);
@@ -47,7 +49,7 @@ export default class Dispatcher {
         this._callCallback(i, payload);
       }
     }
-    
+
     this._isPending = false;
   }
 }

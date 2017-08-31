@@ -22,7 +22,7 @@
     "storybook": "start-storybook -p 9010",
     "bootstrap": "lerna bootstrap",
     "publish": "lerna publish",
-    "fmt": "prettier --single-quote --trailing-comma=all --write 'src/**/*.js'"
+    "fmt": "prettier --single-quote --trailing-comma=all --write '{packages,components}/**/src/*.js'"
   },
   "author": "Pavel Silin",
   "license": "MIT",

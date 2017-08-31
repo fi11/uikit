@@ -3,7 +3,6 @@ import connect from './connect';
 import connectToField from './connectToField';
 import connectToForm from './connectToForm';
 
-
 let formID = 0;
 const stores = {};
 
@@ -32,7 +31,12 @@ export default class FormState {
 
   init({ name, validator, errorCodes } = {}) {
     name = name || `form_${++formID}_${+new Date()}`;
-    stores[name] = new Store({ ...this._storeConfing, name, validator, errorCodes });
+    stores[name] = new Store({
+      ...this._storeConfing,
+      name,
+      validator,
+      errorCodes,
+    });
 
     return name;
   }

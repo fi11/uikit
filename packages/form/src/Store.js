@@ -16,7 +16,9 @@ const bitmapState = new BitmapState([
 ]);
 
 export default class Store {
-  constructor({ validator, errorConfig = DEFAULT_ERROR_CONFIG, errorCodes = {} } = {}) {
+  constructor(
+    { validator, errorConfig = DEFAULT_ERROR_CONFIG, errorCodes = {} } = {},
+  ) {
     this._dispatcher = new Dispatcher();
     this._values = {};
     this._initValues = {};
@@ -101,12 +103,13 @@ export default class Store {
     this._dispatcher.dispatch('setFieldError');
   }
 
-
   removeStatus(name, status) {
     const prevStatus = this._values[name].getStatus();
 
     if (bitmapState.has(prevStatus, status)) {
-      this._values[name] = this._values[name].setStatus(bitmapState.remove(prevStatus, status));
+      this._values[name] = this._values[name].setStatus(
+        bitmapState.remove(prevStatus, status),
+      );
     }
   }
 
@@ -115,10 +118,14 @@ export default class Store {
       const prevStatus = this._values[name].getStatus();
 
       if (!bitmapState.has(prevStatus, status)) {
-        this._values[name] = this._values[name].setStatus(bitmapState.add(prevStatus, status));
+        this._values[name] = this._values[name].setStatus(
+          bitmapState.add(prevStatus, status),
+        );
       }
     } else {
-      this._values[name] = this._values[name].setStatus(bitmapState.encode(status));
+      this._values[name] = this._values[name].setStatus(
+        bitmapState.encode(status),
+      );
     }
 
     isNeedDispatch && this._dispatcher.dispatch('setStatus');

@@ -1,11 +1,9 @@
 import DI from './index';
 
-class Foo {
-
-}
+class Foo {}
 
 class Bar {
-  foo
+  foo;
 }
 
 describe('test', () => {

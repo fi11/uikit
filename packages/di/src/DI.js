@@ -45,7 +45,10 @@ export default class DIManager {
     if (!instance) {
       const TargetClass = decl.Class;
 
-      if (typeof TargetClass !== 'function' && typeof config.fabric !== 'function') {
+      if (
+        typeof TargetClass !== 'function' &&
+        typeof config.fabric !== 'function'
+      ) {
         throw new Error(
           `DI error: you must provide "${Interface}" class before inject it, may be you forget export it`,
         );
@@ -71,7 +74,7 @@ export default class DIManager {
 
             throw new Error(
               `DI error: can't inject ${propName} for ${TargetClass.name ||
-              'Unknown'} class`,
+                'Unknown'} class`,
             );
           }
         });

@@ -13,4 +13,3 @@ export const rules = {
 };
 
 export const codes = CODES;
-

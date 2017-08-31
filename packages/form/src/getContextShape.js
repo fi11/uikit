@@ -16,4 +16,3 @@ export default () => {
     registerCallback: PropTypes.func.isRequired,
   });
 };
-

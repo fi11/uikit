@@ -11,8 +11,8 @@ type ConstructorPayload = {
   value: any,
   error: any,
   hasValue: boolean,
-  creationTimestamp: number
-}
+  creationTimestamp: number,
+};
 
 const NONE_STATUS = 'NONE';
 
@@ -24,7 +24,6 @@ const CONSTRUCTOR_PAYLOAD = {
   hasValue: false,
   creationTimestamp: 0,
 };
-
 
 export default class StateStruct {
   _status: string;
@@ -63,20 +62,27 @@ export default class StateStruct {
   static createWithStatus(status: string): StateStruct {
     return new this({
       ...CONSTRUCTOR_PAYLOAD,
-      status:  status,
+      status: status,
       creationTimestamp: +new Date(),
     });
   }
 
-  constructor({ secret, status, value, error, hasValue, creationTimestamp }: ConstructorPayload) {
+  constructor({
+    secret,
+    status,
+    value,
+    error,
+    hasValue,
+    creationTimestamp,
+  }: ConstructorPayload) {
     if (secret !== SECRET) {
       throw new Error(
         'StateStruct constructor error: constructor is not public, ' +
-        'use static methods: ' +
-        'createEmpty, ' +
-        'createWithValue, ' +
-        'createWithStatus, ' +
-        'createWithError'
+          'use static methods: ' +
+          'createEmpty, ' +
+          'createWithValue, ' +
+          'createWithStatus, ' +
+          'createWithError',
       );
     }
 
@@ -101,10 +107,12 @@ export default class StateStruct {
   }
 
   setValue(value: any): StateStruct {
-    return new this.constructor(this._getConstructorPayload({
-      value,
-      hasValue: true,
-    }));
+    return new this.constructor(
+      this._getConstructorPayload({
+        value,
+        hasValue: true,
+      }),
+    );
   }
 
   updateValue(updater: (value: any) => any): StateStruct {
@@ -112,37 +120,47 @@ export default class StateStruct {
       return this;
     }
 
-    return new this.constructor(this._getConstructorPayload({
-      value: updater(this._value),
-      hasValue: true,
-    }));
+    return new this.constructor(
+      this._getConstructorPayload({
+        value: updater(this._value),
+        hasValue: true,
+      }),
+    );
   }
 
   removeValue(value: any): StateStruct {
-    return new this.constructor(this._getConstructorPayload({
-      secret: SECRET,
-      value: null,
-      hasValue: false,
-    }));
+    return new this.constructor(
+      this._getConstructorPayload({
+        secret: SECRET,
+        value: null,
+        hasValue: false,
+      }),
+    );
   }
 
   setError(error: any): StateStruct {
-    return new this.constructor(this._getConstructorPayload({
-      error: error,
-    }));
+    return new this.constructor(
+      this._getConstructorPayload({
+        error: error,
+      }),
+    );
   }
 
   removeError(): StateStruct {
-    return new this.constructor(this._getConstructorPayload({
-      secret: SECRET,
-      error: null,
-    }));
+    return new this.constructor(
+      this._getConstructorPayload({
+        secret: SECRET,
+        error: null,
+      }),
+    );
   }
 
   setStatus(status: string): StateStruct {
-    return new this.constructor(this._getConstructorPayload({
-      status: status,
-    }));
+    return new this.constructor(
+      this._getConstructorPayload({
+        status: status,
+      }),
+    );
   }
 
   setNoneStatus(): StateStruct {
@@ -154,9 +172,9 @@ export default class StateStruct {
   }
 
   isEmpty(): boolean {
-    return !this._hasValue &&
-      this._error === null &&
-      this._status === NONE_STATUS;
+    return (
+      !this._hasValue && this._error === null && this._status === NONE_STATUS
+    );
   }
 
   hasModification(): boolean {

@@ -3,15 +3,17 @@ import { StyleSheet } from 'react-native';
 export default (elementName, styleRules) => {
   const styleRulesAsFunc = {};
 
-  const styles = StyleSheet.create(Object.keys(styleRules).reduce((result, key) => {
-    const rule = styleRules[key];
+  const styles = StyleSheet.create(
+    Object.keys(styleRules).reduce((result, key) => {
+      const rule = styleRules[key];
 
-    const container = typeof rule === 'object' ? result : styleRulesAsFunc;
+      const container = typeof rule === 'object' ? result : styleRulesAsFunc;
 
-    container[key] = styleRules[key];
+      container[key] = styleRules[key];
 
-    return result;
-  }, {}));
+      return result;
+    }, {}),
+  );
 
   return {
     get: (key, arg) => {

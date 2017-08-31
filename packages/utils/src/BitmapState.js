@@ -15,14 +15,18 @@ export default class BitmapState {
     const value = this._availableStates[state];
 
     if (typeof value === 'undefined') {
-      throw new Error(`BitmapState error: unavailable state value, use one of: ${this._states.join(',')}`);
+      throw new Error(
+        `BitmapState error: unavailable state value, use one of: ${this._states.join(
+          ',',
+        )}`,
+      );
     }
 
     return value;
   }
 
   add(value, state) {
-    return  value | this.encode(state);
+    return value | this.encode(state);
   }
 
   remove(value, state) {

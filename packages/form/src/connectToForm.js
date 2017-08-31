@@ -22,10 +22,16 @@ export default (
         validator.schema = schema;
       }
 
-      const formName = form.init({ name: props.formName, validator, errorCodes });
+      const formName = form.init({
+        name: props.formName,
+        validator,
+        errorCodes,
+      });
       this._getFormName = () => formName;
 
-      this.state = hasMapStateToProps ? mapStateToProps(form, { ...props }) || {} : {};
+      this.state = hasMapStateToProps
+        ? mapStateToProps(form, { ...props }) || {}
+        : {};
 
       this.onSubmit = this.onSubmit.bind(this);
     }
@@ -49,7 +55,7 @@ export default (
           getErrorText() {
             return this.getStore().getErrorText();
           },
-          registerCallback: (callback) => {
+          registerCallback: callback => {
             return this.getStore().registerCallback(callback);
           },
           isValid: () => {

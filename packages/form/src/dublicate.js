@@ -9,5 +9,5 @@ export default (compareKey, code) => {
       isValid: value === compareValue,
       code: code || DUPLICATE,
     };
-  }
-}
+  };
+};
