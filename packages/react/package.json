@@ -1,12 +1,12 @@
 {
-  "name": "@uikit/view",
+  "name": "@uikit/react",
   "version": "0.0.10",
-  "description": "View component",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "description": "React dependency",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
   "files": [
     "lib",
-    "lib"
+    "src"
   ],
   "repository": {
     "type": "git",
@@ -16,26 +16,20 @@
     "url": "https://github.com/fi11/uikit/issues"
   },
   "keywords": [
-    "ui",
     "react"
   ],
   "homepage": "https://github.com/fi11/uikit",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "node ../../scripts/prepublish.js",
-    "storybook": "start-storybook -p 9010"
+    "prepublish": "node ../../scripts/prepublish.js"
   },
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
     "@uikit/di": "^0.0.8",
-    "@uikit/styled": "^0.0.10"
+    "prop-types": "^15.5.4"
   },
-  "devDependencies": {
-    "@storybook/addon-knobs": "^3.2.8",
-    "@storybook/addons": "^3.2.6",
-    "@storybook/react": "^3.2.8",
-    "@uikit/styled-react": "^0.0.10",
+  "peerDependencies": {
     "react": "^15.5.4"
   }
 }

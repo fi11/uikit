@@ -1,11 +1,11 @@
 {
   "name": "@uikit/styled-rn",
   "version": "0.0.10",
-  "description": "React Native environment for styled lib",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "description": "React Native dependency for styled lib",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
   "files": [
-    "dist",
+    "lib",
     "src"
   ],
   "repository": {
@@ -16,10 +16,7 @@
     "url": "https://github.com/fi11/uikit/issues"
   },
   "keywords": [
-    "ui",
-    "react",
-    "css",
-    "css in js"
+    "react-native"
   ],
   "homepage": "https://github.com/fi11/uikit",
   "scripts": {
@@ -30,7 +27,8 @@
   "license": "MIT",
   "dependencies": {
     "@uikit/di": "^0.0.8",
-    "@uikit/styled": "^0.0.10"
+    "@uikit/styled": "^0.0.10",
+    "@uikit/react": "^0.0.10"
   },
   "devDependencies": {
     "react-native": "^0.47.2"

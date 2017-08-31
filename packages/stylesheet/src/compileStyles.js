@@ -1,9 +1,8 @@
-import DI from '@uikit/di';
+import StyleSheet from './StyleSheet';
 
 const getClassName = (prefix, name) => `${prefix}_${name}`.replace(/:/g, '-');
 
 export default (elementName, styleRules) => {
-  const StyleSheet = DI.get('@uikit/StyleSheet');
   const styleRulesAsFunc = {};
 
   const compiledRules = StyleSheet.create(

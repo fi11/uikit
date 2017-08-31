@@ -1,5 +1,4 @@
 import DI from '@uikit/di';
-
 const styled = DI.get('@uikit/styled');
 
 const styles = {
@@ -23,12 +22,6 @@ if (typeof window !== undefined) {
 }
 
 const Overlay = styled(styles);
-// const Overlay = ({ color, opacity }) => createElement(OverlayStyled, {
-//   style: {
-//     backgroundColor: color,
-//       opacity
-//   },
-// });
 
 Overlay.defaultProps = {
   color: '#fff',

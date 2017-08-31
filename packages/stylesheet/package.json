@@ -2,10 +2,10 @@
   "name": "@uikit/stylesheet",
   "version": "0.0.9",
   "description": "StyleSheet class for browser",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
   "files": [
-    "dist",
+    "lib",
     "src"
   ],
   "repository": {

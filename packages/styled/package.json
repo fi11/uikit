@@ -2,10 +2,10 @@
   "name": "@uikit/styled",
   "version": "0.0.10",
   "description": "Helper to create styled react component with css in js",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
   "files": [
-    "dist",
+    "lib",
     "src"
   ],
   "repository": {

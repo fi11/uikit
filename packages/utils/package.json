@@ -1,7 +1,7 @@
 {
-  "name": "@uikit/dispatcher",
-  "version": "0.0.9",
-  "description": "Simple dispatcher",
+  "name": "@uikit/utils",
+  "version": "0.0.10",
+  "description": "Helpers library for uikit",
   "main": "lib/index.js",
   "module": "lib/index.js",
   "files": [
@@ -16,7 +16,7 @@
     "url": "https://github.com/fi11/uikit/issues"
   },
   "keywords": [
-    "dispatcher"
+    "utils"
   ],
   "homepage": "https://github.com/fi11/uikit",
   "scripts": {

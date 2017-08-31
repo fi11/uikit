@@ -1,7 +1,6 @@
 .DS_Store
 .idea
 
-.storybook
 npm-debug.log
 node_modules
 

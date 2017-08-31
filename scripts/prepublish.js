@@ -12,7 +12,7 @@ shell.rm('-rf', 'dist');
 const babel = path.join(__dirname, '..', 'node_modules', '.bin', 'babel');
 const args = [
   '--ignore tests,__tests__,test.js,stories/,story.jsx',
-  './src --out-dir ./dist',
+  './src --out-dir ./lib',
   '--copy-files',
 ].join(' ');
 

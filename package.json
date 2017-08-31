@@ -27,9 +27,6 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "devDependencies": {
-    "@storybook/addon-knobs": "^3.2.8",
-    "@storybook/addons": "^3.2.6",
-    "@storybook/react": "^3.2.8",
     "babel-cli": "6.24.1",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "6.23.0",

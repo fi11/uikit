@@ -1,12 +1,12 @@
 {
-  "name": "@uikit/view",
+  "name": "@uikit/form",
   "version": "0.0.10",
-  "description": "View component",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "description": "React form state managment",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
   "files": [
     "lib",
-    "lib"
+    "src"
   ],
   "repository": {
     "type": "git",
@@ -16,8 +16,8 @@
     "url": "https://github.com/fi11/uikit/issues"
   },
   "keywords": [
-    "ui",
-    "react"
+    "react",
+    "form"
   ],
   "homepage": "https://github.com/fi11/uikit",
   "scripts": {
@@ -29,13 +29,14 @@
   "license": "MIT",
   "dependencies": {
     "@uikit/di": "^0.0.8",
-    "@uikit/styled": "^0.0.10"
+    "@uikit/utils": "^0.0.10",
+    "@uikit/dispatcher": "^0.0.9",
+    "@uikit/react": "^0.0.10"
   },
   "devDependencies": {
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
-    "@uikit/styled-react": "^0.0.10",
     "react": "^15.5.4"
   }
 }
