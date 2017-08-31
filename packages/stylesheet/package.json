@@ -1,6 +1,6 @@
 {
   "name": "@uikit/stylesheet",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "StyleSheet class for browser",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -29,7 +29,7 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/di": "^0.0.8",
+    "@uikit/di": "^0.0.11",
     "jss": "8.1.0",
     "jss-camel-case": "5.0.0",
     "jss-default-unit": "7.0.0",

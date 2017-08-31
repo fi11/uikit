@@ -1,6 +1,6 @@
 {
   "name": "@uikit/overlay",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Overlay component",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -28,14 +28,14 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/di": "^0.0.8"
+    "@uikit/di": "^0.0.11"
   },
   "devDependencies": {
-    "@uikit/styled": "^0.0.10",
-    "@uikit/styled-react": "^0.0.10",
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
+    "@uikit/styled": "^0.0.11",
+    "@uikit/styled-react": "^0.0.11",
     "react": "^15.5.4"
   }
 }

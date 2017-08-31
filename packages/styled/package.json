@@ -1,6 +1,6 @@
 {
   "name": "@uikit/styled",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Helper to create styled react component with css in js",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -29,7 +29,7 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/di": "^0.0.8"
+    "@uikit/di": "^0.0.11"
   },
   "devDependencies": {
     "react": "^15.5.4"

@@ -1,6 +1,6 @@
 {
   "name": "@uikit/react",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "React dependency",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -26,7 +26,7 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/di": "^0.0.8",
+    "@uikit/di": "^0.0.11",
     "prop-types": "^15.5.4"
   },
   "peerDependencies": {

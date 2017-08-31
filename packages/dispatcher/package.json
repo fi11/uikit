@@ -1,6 +1,6 @@
 {
   "name": "@uikit/dispatcher",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "Simple dispatcher",
   "main": "lib/index.js",
   "module": "lib/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@uikit/utils",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Helpers library for uikit",
   "main": "lib/index.js",
   "module": "lib/index.js",

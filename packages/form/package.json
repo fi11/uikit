@@ -1,6 +1,6 @@
 {
   "name": "@uikit/form",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "React form state managment",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -28,10 +28,10 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/di": "^0.0.8",
-    "@uikit/utils": "^0.0.10",
-    "@uikit/dispatcher": "^0.0.9",
-    "@uikit/react": "^0.0.10"
+    "@uikit/di": "^0.0.11",
+    "@uikit/dispatcher": "^0.0.11",
+    "@uikit/react": "^0.0.11",
+    "@uikit/utils": "^0.0.11"
   },
   "devDependencies": {
     "@storybook/addon-knobs": "^3.2.8",
