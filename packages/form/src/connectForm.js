@@ -1,11 +1,11 @@
 import DI from '@uikit/di';
 import getContextShape from './getContextShape';
 import Validator from './Validator';
+import Store from './Store';
 
 export default (
   FormComponent,
-  form,
-  { schema, errorCodes = {} } = {},
+  { name = 'form', schema, errorCodes = {} } = {},
   mapStateToProps,
 ) => {
   const hasMapStateToProps = typeof mapStateToProps === 'function';
@@ -22,12 +22,14 @@ export default (
         validator.schema = schema;
       }
 
-      const formName = form.init({
-        name: props.formName,
+      this.form = new Store({
+        ...this._storeConfing,
+        name,
         validator,
         errorCodes,
       });
-      this._getFormName = () => formName;
+
+      this._getFormName = () => name;
 
       this.state = hasMapStateToProps
         ? mapStateToProps(form, { ...props }) || {}
@@ -90,7 +92,13 @@ export default (
     }
 
     getStore() {
-      return form.getStore(this._getFormName());
+      if (!this.form) {
+        throw new Error(
+          `Form error: form state does't exist, you must check component unmount status in asynchronous function`,
+        );
+      }
+
+      return this.form;
     }
 
     componentDidMount() {
@@ -98,7 +106,9 @@ export default (
 
       this._unregister = store._dispatcher.register(() => {
         if (hasMapStateToProps) {
-          const newProps = mapStateToProps(form, { ...(this.props || {}) });
+          const newProps = mapStateToProps(this.form, {
+            ...(this.props || {}),
+          });
 
           if (newProps) {
             this.setState(newProps);
@@ -108,7 +118,7 @@ export default (
     }
 
     componentWillUnmount() {
-      form.removeStore(this._getFormName());
+      this.form = null;
 
       this._unregister && this._unregister();
     }

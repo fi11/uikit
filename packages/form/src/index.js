@@ -1,8 +1,8 @@
-export { default } from './FormState';
+export { default as Store } from './Store';
 import * as CODES from './codes';
-import { default as connect } from './connect';
-import { default as connectToField } from './connectToField';
-import { default as connectToForm } from './connectToForm';
+export { default as connect } from './connect';
+export { default as connectField } from './connectField';
+export { default as connectForm } from './connectForm';
 
 import empty from './empty';
 import required from './required';
