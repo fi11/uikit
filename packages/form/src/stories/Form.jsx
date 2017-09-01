@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Form extends Component {
   componentDidMount() {
-    const { form, hasError, isDisabled } = this.props;
+    const { form, hasError, isDisabled, isValid } = this.props;
     if (hasError) {
       setTimeout(() => {
         form.showError('foo', 'ops!');
@@ -26,10 +26,19 @@ export default class Form extends Component {
         errors: form.getErrors(),
         isValid: form.isValid(),
         isDisabled: form.isDisabled(),
+        isSubmitting: form.isSubmitting(),
       });
     });
   }
   render() {
-    return this.props.children;
+    const { children, isValid } = this.props;
+    return (
+      <div>
+        <div>{children}</div>
+        { typeof isValid !== 'undefined' && (
+          <div style={{ marginTop: 20 }}>{isValid ? '👍' : '👎'}</div>
+        )}
+      </div>
+    )
   }
 }

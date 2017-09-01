@@ -11,15 +11,23 @@ import errorCodes from './errorCodes';
 import { errorStrategies } from '../index';
 
 const TextFieldContainer = createFieldContainer(TextField);
-const Submit = createContainer(Button, (form, { idDisabledOnInvalid = true } = {}) => ({
-  disabled: idDisabledOnInvalid && !form.isValid(),
-  onClick: () => form.submit(),
+const Submit = createContainer(Button, (form, { title, isDisabledOnInvalid = true } = {}) => ({
+  disabled: (isDisabledOnInvalid && !form.isValid()) || form.isSubmitting(),
+  onClick: () => {
+    form.submit();
+
+    setTimeout(() => {
+      form.done();
+    }, 2000);
+  },
+  title: form.isSubmitting() ? 'submitting...' : title,
 }));
 
-const FormContainer = createFormContainer(Form, { schema, errorCodes });
+const FormContainer = createFormContainer(Form, { schema, errorCodes }, (form) => ({ isValid: form.isValid() }));
 const OnlyOnSubmit = createFormContainer(Form, { schema, errorCodes, errorStrategy: errorStrategies.ON_SUBMIT });
 const OnlyOnBlur = createFormContainer(Form, { schema, errorCodes, errorStrategy: errorStrategies.ON_BLUR });
 const OnlyOnBlurAndSubmit = createFormContainer(Form, { schema, errorCodes, errorStrategy: errorStrategies.ON_BLUR_AND_SUBMIT });
+const Submitting = createFormContainer(Form, { schema, errorCodes  });
 
 storiesOf('Test', module)
   .add('main', () =>
@@ -54,7 +62,7 @@ storiesOf('Test', module)
       <div>
         <TextFieldContainer value={''} name="foo" />
         <TextFieldContainer value={''}  name="bar" />
-        <Submit idDisabledOnInvalid={false} title="submit" />
+        <Submit isDisabledOnInvalid={false} title="submit" />
       </div>
     </FormContainer>,
   )
@@ -63,7 +71,7 @@ storiesOf('Test', module)
       <div>
         <TextFieldContainer value={''} name="foo" />
         <TextFieldContainer value={''}  name="bar" />
-        <Submit idDisabledOnInvalid={false} title="submit" />
+        <Submit isDisabledOnInvalid={false} title="submit" />
       </div>
     </OnlyOnSubmit>,
   )
@@ -72,7 +80,7 @@ storiesOf('Test', module)
       <div>
         <TextFieldContainer value={''} name="foo" />
         <TextFieldContainer value={''}  name="bar" />
-        <Submit idDisabledOnInvalid={false} title="submit" />
+        <Submit isDisabledOnInvalid={false} title="submit" />
       </div>
     </OnlyOnBlur>,
   )
@@ -81,7 +89,16 @@ storiesOf('Test', module)
       <div>
         <TextFieldContainer value={''} name="foo" />
         <TextFieldContainer value={''}  name="bar" />
-        <Submit idDisabledOnInvalid={false} title="submit" />
+        <Submit isDisabledOnInvalid={false} title="submit" />
       </div>
     </OnlyOnBlurAndSubmit>,
+  )
+  .add('submitting', () =>
+    <Submitting>
+      <div>
+        <TextFieldContainer value={"123"} name="foo" />
+        <TextFieldContainer value={"bar"}  name="bar" />
+        <Submit isDisabledOnInvalid={false} title="submit" />
+      </div>
+    </Submitting>,
   );

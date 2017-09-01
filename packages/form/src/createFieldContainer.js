@@ -22,6 +22,8 @@ export default FieldComponent => {
 
       this.state = {
         value: store.getValueEntity(props.name),
+        isFormDisabled: store.isFormDisabled(),
+        isSubmitting: store.isSubmitting(),
       };
 
       this.onChange = this.onChange.bind(this);
@@ -35,6 +37,7 @@ export default FieldComponent => {
       this._unregister = store._dispatcher.register(() => {
         const value = store.getValueEntity(name);
         const isFormDisabled = store.isFormDisabled();
+        const isSubmitting = store.isSubmitting();
 
         if (
           this.state.value !== value ||
@@ -43,6 +46,7 @@ export default FieldComponent => {
           this.setState({
             value,
             isFormDisabled,
+            isSubmitting,
           });
         }
       });
@@ -85,6 +89,7 @@ export default FieldComponent => {
         ...props,
         disabled: isDisabled,
         isDisabled,
+        isSubmitting: this.state.isSubmitting,
         errorText: store.getErrorText(name),
         name,
         value,

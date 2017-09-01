@@ -9,6 +9,7 @@ const DEFAULT_ERROR_STRATEGY = STRATEGIES.ON_TOUCH_AND_SUBMIT;
 
 const bitmapState = new BitmapState([
   STATUSES.SUBMITTED_STATUS,
+  STATUSES.SUBMITTING_STATUS,
   STATUSES.TOUCHED_STATUS,
   STATUSES.BLURRED_STATUS,
 ]);
@@ -24,6 +25,9 @@ export default class Store {
     this._isValid = true;
     this._errorStrategy = errorStrategy;
     this._errorCodes = errorCodes;
+
+    this._isSubmitting = false;
+    this._isDisabled = false;
 
     this.validate();
   }
@@ -125,6 +129,17 @@ export default class Store {
     isNeedDispatch && this._dispatcher.dispatch('setStatus');
   }
 
+  markAsSubmitting() {
+    this.validate();
+
+    Object.keys(this._values).forEach(key => {
+      this.addStatus(key, STATUSES.SUBMITTING_STATUS);
+    });
+
+    this._isSubmitting = true;
+    this._dispatcher.dispatch('submitting');
+  }
+
   markAsSubmitted() {
     this.validate();
 
@@ -132,7 +147,8 @@ export default class Store {
       this.addStatus(key, STATUSES.SUBMITTED_STATUS);
     });
 
-    this._dispatcher.dispatch('submit');
+    this._isSubmitting = false;
+    this._dispatcher.dispatch('submitted');
   }
 
   isValid() {
@@ -190,7 +206,8 @@ export default class Store {
       (this._errorStrategy === STRATEGIES.ON_SUBMIT ||
         this._errorStrategy === STRATEGIES.ON_BLUR_AND_SUBMIT ||
         this._errorStrategy === STRATEGIES.ON_TOUCH_AND_SUBMIT) &&
-      this._hasStatus(name, STATUSES.SUBMITTED_STATUS)
+      (this._hasStatus(name, STATUSES.SUBMITTED_STATUS) ||
+        this._hasStatus(name, STATUSES.SUBMITTING_STATUS))
     ) {
       return this._formatErrorText(value.getError(), name);
     }
@@ -234,6 +251,10 @@ export default class Store {
 
   isFormDisabled() {
     return !!this._isDisabled;
+  }
+
+  isSubmitting() {
+    return !!this._isSubmitting;
   }
 
   setDisabledStatus(isDisabled) {

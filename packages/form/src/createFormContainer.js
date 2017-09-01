@@ -3,6 +3,8 @@ import getContextShape from './getContextShape';
 import Validator from './Validator';
 import Store from './Store';
 
+
+
 export default (
   FormComponent,
   { name = 'form', schema, errorCodes = {}, errorStrategy } = {},
@@ -10,6 +12,12 @@ export default (
 ) => {
   const hasMapStateToProps = typeof mapStateToProps === 'function';
   const Component = DI.get('@uikit/PureComponent');
+
+  const getState = (form, props) => {
+    return hasMapStateToProps
+      ? mapStateToProps(form, { ...props }) || {}
+      : {};
+  };
 
   return class FormContainer extends Component {
     constructor(props, ...args) {
@@ -31,10 +39,7 @@ export default (
 
       this._getFormName = () => name;
 
-      this.state = hasMapStateToProps
-        ? mapStateToProps(this.form, { ...props }) || {}
-        : {};
-
+      this.state = getState(this.form, props);
       this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -69,6 +74,9 @@ export default (
           isDirty: () => {
             return !!Object.keys(this.getStore().getChanges() || {}).length;
           },
+          isSubmitting() {
+            return this.getStore().isSubmitting();
+          },
           setValues: values => {
             this.getStore().setValues(values);
           },
@@ -85,6 +93,9 @@ export default (
             this.getStore().setDisabledStatus(false);
           },
           submit: () => {
+            this.getStore().markAsSubmitting();
+          },
+          done: () => {
             this.getStore().markAsSubmitted();
           },
         },
@@ -104,15 +115,11 @@ export default (
     componentDidMount() {
       const store = this.getStore();
 
+      this.setState(getState(this.form, this.props));
+
       this._unregister = store._dispatcher.register(() => {
         if (hasMapStateToProps) {
-          const newProps = mapStateToProps(this.form, {
-            ...(this.props || {}),
-          });
-
-          if (newProps) {
-            this.setState(newProps);
-          }
+          this.setState(getState(this.form, this.props));
         }
       });
     }
