@@ -3,11 +3,9 @@ import BitmapState from '@uikit/utils/lib/BitmapState';
 import StateStruct from '@uikit/utils/lib/StateStruct';
 
 import * as STATUSES from './fieldStatuses';
+import * as STRATEGIES from './errorStrategies';
 
-const DEFAULT_ERROR_CONFIG = {
-  onSubmit: true,
-  onTouch: true,
-};
+const DEFAULT_ERROR_STRATEGY = STRATEGIES.ON_TOUCH_AND_SUBMIT;
 
 const bitmapState = new BitmapState([
   STATUSES.SUBMITTED_STATUS,
@@ -17,14 +15,14 @@ const bitmapState = new BitmapState([
 
 export default class Store {
   constructor(
-    { validator, errorConfig = DEFAULT_ERROR_CONFIG, errorCodes = {} } = {},
+    { validator, errorStrategy = DEFAULT_ERROR_STRATEGY, errorCodes = {} } = {},
   ) {
     this._dispatcher = new Dispatcher();
     this._values = {};
     this._initValues = {};
     this._validator = validator;
     this._isValid = true;
-    this._errorConfig = errorConfig;
+    this._errorStrategy = errorStrategy;
     this._errorCodes = errorCodes;
 
     this.validate();
@@ -50,7 +48,9 @@ export default class Store {
   }
 
   validate() {
-    const errors = this._validator ? this._validator.execute(this.getValues()) : null;
+    const errors = this._validator
+      ? this._validator.execute(this.getValues())
+      : null;
 
     Object.keys(this._values).forEach(key => {
       const fieldErrors = errors && errors[key];
@@ -187,20 +187,31 @@ export default class Store {
     }
 
     if (
-      this._errorConfig.onSubmit &&
+      (this._errorStrategy === STRATEGIES.ON_SUBMIT ||
+        this._errorStrategy === STRATEGIES.ON_BLUR_AND_SUBMIT ||
+        this._errorStrategy === STRATEGIES.ON_TOUCH_AND_SUBMIT) &&
       this._hasStatus(name, STATUSES.SUBMITTED_STATUS)
     ) {
       return this._formatErrorText(value.getError(), name);
     }
 
     if (
-      !this._hasStatus(name, STATUSES.TOUCHED_STATUS) ||
-      !this._hasStatus(name, STATUSES.BLURRED_STATUS)
+      (this._errorStrategy === STRATEGIES.ON_BLUR ||
+        this._errorStrategy === STRATEGIES.ON_BLUR_AND_SUBMIT) &&
+      this._hasStatus(name, STATUSES.BLURRED_STATUS)
     ) {
-      return '';
+      return this._formatErrorText(value.getError(), name);
     }
 
-    return this._formatErrorText(value.getError(), name);
+    if (
+      this._errorStrategy === STRATEGIES.ON_TOUCH_AND_SUBMIT &&
+      this._hasStatus(name, STATUSES.TOUCHED_STATUS) &&
+      this._hasStatus(name, STATUSES.BLURRED_STATUS)
+    ) {
+      return this._formatErrorText(value.getError(), name);
+    }
+
+    return '';
   }
 
   _formatErrorText(code, name) {

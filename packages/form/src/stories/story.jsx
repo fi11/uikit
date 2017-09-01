@@ -8,10 +8,18 @@ import TextField from './TextField';
 import Button from './Button';
 import schema from './schema';
 import errorCodes from './errorCodes';
+import { errorStrategies } from '../index';
 
 const TextFieldContainer = createFieldContainer(TextField);
-const Submit = createContainer(Button, (form) => ({ disabled: !form.isValid() }));
+const Submit = createContainer(Button, (form, { idDisabledOnInvalid = true } = {}) => ({
+  disabled: idDisabledOnInvalid && !form.isValid(),
+  onClick: () => form.submit(),
+}));
+
 const FormContainer = createFormContainer(Form, { schema, errorCodes });
+const OnlyOnSubmit = createFormContainer(Form, { schema, errorCodes, errorStrategy: errorStrategies.ON_SUBMIT });
+const OnlyOnBlur = createFormContainer(Form, { schema, errorCodes, errorStrategy: errorStrategies.ON_BLUR });
+const OnlyOnBlurAndSubmit = createFormContainer(Form, { schema, errorCodes, errorStrategy: errorStrategies.ON_BLUR_AND_SUBMIT });
 
 storiesOf('Test', module)
   .add('main', () =>
@@ -42,11 +50,38 @@ storiesOf('Test', module)
     </FormContainer>,
   )
   .add('submitted', () =>
-    <FormContainer isDisabled>
+    <FormContainer>
       <div>
-        <TextFieldContainer value={"foo"} name="foo" />
-        <TextFieldContainer value={"bar"}  name="bar" />
-        <Submit title="submit" />
+        <TextFieldContainer value={''} name="foo" />
+        <TextFieldContainer value={''}  name="bar" />
+        <Submit idDisabledOnInvalid={false} title="submit" />
       </div>
     </FormContainer>,
+  )
+  .add('only on submitted', () =>
+    <OnlyOnSubmit>
+      <div>
+        <TextFieldContainer value={''} name="foo" />
+        <TextFieldContainer value={''}  name="bar" />
+        <Submit idDisabledOnInvalid={false} title="submit" />
+      </div>
+    </OnlyOnSubmit>,
+  )
+  .add('only on blur', () =>
+    <OnlyOnBlur>
+      <div>
+        <TextFieldContainer value={''} name="foo" />
+        <TextFieldContainer value={''}  name="bar" />
+        <Submit idDisabledOnInvalid={false} title="submit" />
+      </div>
+    </OnlyOnBlur>,
+  )
+  .add('only on blur and submit', () =>
+    <OnlyOnBlurAndSubmit>
+      <div>
+        <TextFieldContainer value={''} name="foo" />
+        <TextFieldContainer value={''}  name="bar" />
+        <Submit idDisabledOnInvalid={false} title="submit" />
+      </div>
+    </OnlyOnBlurAndSubmit>,
   );

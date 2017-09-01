@@ -5,7 +5,7 @@ import Store from './Store';
 
 export default (
   FormComponent,
-  { name = 'form', schema, errorCodes = {} } = {},
+  { name = 'form', schema, errorCodes = {}, errorStrategy } = {},
   mapStateToProps,
 ) => {
   const hasMapStateToProps = typeof mapStateToProps === 'function';
@@ -23,10 +23,10 @@ export default (
       }
 
       this.form = new Store({
-        ...this._storeConfing,
         name,
         validator,
         errorCodes,
+        errorStrategy,
       });
 
       this._getFormName = () => name;
