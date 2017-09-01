@@ -2,16 +2,16 @@ import '@uikit/react';
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { connectField, connectForm, connect  } from '../index';
+import { createContainer, createFieldContainer, createFormContainer } from '../index';
 import Form from './Form';
 import TextField from './TextField';
 import Button from './Button';
 import schema from './schema';
 import errorCodes from './errorCodes';
 
-const TextFieldContainer = connectField(TextField);
-const Submit = connect(Button, (form) => ({ disabled: !form.isValid() }));
-const FormContainer = connectForm(Form, { schema, errorCodes });
+const TextFieldContainer = createFieldContainer(TextField);
+const Submit = createContainer(Button, (form) => ({ disabled: !form.isValid() }));
+const FormContainer = createFormContainer(Form, { schema, errorCodes });
 
 storiesOf('Test', module)
   .add('main', () =>
