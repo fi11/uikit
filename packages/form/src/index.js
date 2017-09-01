@@ -18,9 +18,4 @@ export const connectForm = (...args) => c => createFormContainer(c, ...args);
 export const connectField = (...args) => c => createFieldContainer(c, ...args);
 export const connect = (...args) => c => createContainer(c, ...args);
 
-export {
-  createFormContainer,
-  createFieldContainer,
-  createContainer,
-};
-
+export { createFormContainer, createFieldContainer, createContainer };
