@@ -9,7 +9,7 @@ export default (
   mapStateToProps,
 ) => {
   const hasMapStateToProps = typeof mapStateToProps === 'function';
-  const Component = DI.get('@uikit/Component');
+  const Component = DI.get('@uikit/PureComponent');
 
   return class FormContainer extends Component {
     constructor(props, ...args) {

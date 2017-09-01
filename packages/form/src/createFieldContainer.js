@@ -3,7 +3,7 @@ import getContextShape from './getContextShape';
 import * as STATUSES from './fieldStatuses';
 
 export default FieldComponent => {
-  const Component = DI.get('@uikit/Component');
+  const Component = DI.get('@uikit/PureComponent');
 
   class FieldContainer extends Component {
     static contextTypes = {
@@ -23,6 +23,9 @@ export default FieldComponent => {
       this.state = {
         value: store.getValueEntity(props.name),
       };
+
+      this.onChange = this.onChange.bind(this);
+      this.onBlur = this.onBlur.bind(this);
     }
 
     componentDidMount() {
@@ -72,10 +75,11 @@ export default FieldComponent => {
     render() {
       const createElement = DI.get('@uikit/createElement');
       const store = this.getStore();
-      const { value: initValue, name, disabled, ...props } = this.props;
+      const { name, isDisabled: ownIsDisabled, disabled, ...props } = this.props;
       const entity = store.getValueEntity(name);
       const value = entity.getValue() || '';
-      const isDisabled = disabled || store.isFormDisabled();
+
+      const isDisabled = this.state.isFormDisabled || ownIsDisabled || disabled;
 
       return createElement(FieldComponent, {
         ...props,
