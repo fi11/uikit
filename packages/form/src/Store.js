@@ -50,13 +50,7 @@ export default class Store {
   }
 
   validate() {
-    if (!this._validator) {
-      this._isValid = true;
-
-      return this._isValid;
-    }
-
-    const errors = this._validator.execute(this.getValues());
+    const errors = this._validator ? this._validator.execute(this.getValues()) : null;
 
     Object.keys(this._values).forEach(key => {
       const fieldErrors = errors && errors[key];

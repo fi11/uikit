@@ -26,7 +26,7 @@ storiesOf('Test', module)
   .add('show error', () =>
     <FormContainer hasError>
       <div>
-        <TextFieldContainer value={"foo"} name="foo" />
+        <TextFieldContainer value={"123"} name="foo" />
         <TextFieldContainer value={"bar"}  name="bar" />
         <Submit title="submit" />
       </div>
