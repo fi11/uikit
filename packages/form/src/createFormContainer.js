@@ -32,7 +32,7 @@ export default (
       this._getFormName = () => name;
 
       this.state = hasMapStateToProps
-        ? mapStateToProps(form, { ...props }) || {}
+        ? mapStateToProps(this.form, { ...props }) || {}
         : {};
 
       this.onSubmit = this.onSubmit.bind(this);
