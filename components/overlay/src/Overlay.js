@@ -8,7 +8,6 @@ const Overlay = styled({
     right: 0,
     bottom: 0,
     left: 0,
-    zIndex: '999',
   },
   color: color => ({
     background: color,
