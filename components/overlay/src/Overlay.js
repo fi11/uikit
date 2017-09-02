@@ -1,13 +1,14 @@
 import DI from '@uikit/di';
 const styled = DI.get('@uikit/styled');
 
-const styles = {
+const Overlay = styled({
   root: {
     position: 'absolute',
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
+    zIndex: '999',
   },
   color: color => ({
     background: color,
@@ -15,13 +16,7 @@ const styles = {
   opacity: opacity => ({
     opacity,
   }),
-};
-
-if (typeof window !== undefined) {
-  styles.root.zIndex = '999';
-}
-
-const Overlay = styled(styles);
+});
 
 Overlay.defaultProps = {
   color: '#fff',
