@@ -3,8 +3,6 @@ import getContextShape from './getContextShape';
 import Validator from './Validator';
 import Store from './Store';
 
-
-
 export default (
   FormComponent,
   { name = 'form', schema, errorCodes = {}, errorStrategy } = {},
@@ -14,9 +12,7 @@ export default (
   const Component = DI.get('@uikit/PureComponent');
 
   const getState = (form, props) => {
-    return hasMapStateToProps
-      ? mapStateToProps(form, { ...props }) || {}
-      : {};
+    return hasMapStateToProps ? mapStateToProps(form, { ...props }) || {} : {};
   };
 
   return class FormContainer extends Component {

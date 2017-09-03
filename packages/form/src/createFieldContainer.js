@@ -79,7 +79,12 @@ export default FieldComponent => {
     render() {
       const createElement = DI.get('@uikit/createElement');
       const store = this.getStore();
-      const { name, isDisabled: ownIsDisabled, disabled, ...props } = this.props;
+      const {
+        name,
+        isDisabled: ownIsDisabled,
+        disabled,
+        ...props
+      } = this.props;
       const entity = store.getValueEntity(name);
       const value = entity.getValue() || '';
 

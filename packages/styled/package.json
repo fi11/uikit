@@ -33,5 +33,5 @@
   },
   "devDependencies": {
     "react": "^15.5.4"
-  },
+  }
 }
