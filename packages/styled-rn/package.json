@@ -1,6 +1,6 @@
 {
   "name": "@uikit/styled-rn",
-  "version": "0.0.11",
+  "version": "0.0.17",
   "description": "React Native dependency for styled lib",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -28,7 +28,7 @@
   "dependencies": {
     "@uikit/di": "^0.0.11",
     "@uikit/react": "^0.0.11",
-    "@uikit/styled": "^0.0.11"
+    "@uikit/styled": "^0.0.17"
   },
   "devDependencies": {
     "react-native": "^0.47.2"

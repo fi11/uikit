@@ -1,6 +1,6 @@
 {
   "name": "@uikit/form",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "React form state managment",
   "main": "lib/index.js",
   "module": "lib/index.js",

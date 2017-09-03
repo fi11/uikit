@@ -1,6 +1,6 @@
 {
   "name": "@uikit/preact",
-  "version": "0.0.11",
+  "version": "0.0.17",
   "description": "Preact dependency",
   "main": "lib/index.js",
   "module": "lib/index.js",

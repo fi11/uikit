@@ -1,6 +1,6 @@
 {
   "name": "@uikit/view",
-  "version": "0.0.11",
+  "version": "0.0.17",
   "description": "View component",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -29,13 +29,13 @@
   "license": "MIT",
   "dependencies": {
     "@uikit/di": "^0.0.11",
-    "@uikit/styled": "^0.0.11"
+    "@uikit/styled": "^0.0.17"
   },
   "devDependencies": {
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
-    "@uikit/styled-react": "^0.0.11",
+    "@uikit/styled-react": "^0.0.17",
     "react": "^15.5.4"
   }
 }
