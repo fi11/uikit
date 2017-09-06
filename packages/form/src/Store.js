@@ -32,7 +32,7 @@ export default class Store {
     this.validate();
   }
 
-  initField(name, value = null) {
+  initField(name, value = null, isSilent = false) {
     this._values[name] = this._values[name] || StateStruct.createEmpty();
     this._initValues[name] =
       this._initValues[name] || StateStruct.createEmpty();
@@ -48,7 +48,10 @@ export default class Store {
     }
 
     this.validate();
-    this._dispatcher.dispatch('initField');
+
+    if (!isSilent) {
+      this._dispatcher.dispatch('initField');
+    }
   }
 
   validate() {

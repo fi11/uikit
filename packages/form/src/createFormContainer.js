@@ -94,6 +94,11 @@ export default (
           done: () => {
             this.getStore().markAsSubmitted();
           },
+          setInitValues: (values, isSilent) => {
+            Object.keys(values).forEach(name => {
+              this.getStore().initField(name, values[name], isSilent);
+            });
+          }
         },
       };
     }

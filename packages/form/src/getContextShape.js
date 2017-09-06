@@ -18,5 +18,6 @@ export default () => {
     showError: PropTypes.func.isRequired,
     getStore: PropTypes.func.isRequired,
     registerCallback: PropTypes.func.isRequired,
+    setInitValues: PropTypes.func.isRequired,
   });
 };

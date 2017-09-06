@@ -18,7 +18,7 @@ export default FieldComponent => {
 
       const store = this.getStore(context);
 
-      store.initField(props.name, props.value);
+      store.initField(props.name, props.value, true);
 
       this.state = {
         value: store.getValueEntity(props.name),
@@ -73,7 +73,7 @@ export default FieldComponent => {
     }
 
     getStore() {
-      if (this.context.formState) {
+      if (!this.context.formState) {
         throw new Error('Form field error: you must provide context for form field, use "createFormContainer" or "connectForm" decorator');
       }
 

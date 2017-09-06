@@ -23,6 +23,20 @@ const Submit = createContainer(Button, (form, { title, isDisabledOnInvalid = tru
   title: form.isSubmitting() ? 'submitting...' : title,
 }));
 
+const ShowValues = createContainer(Button, (form, { title } = {}) => ({
+  title: title || 'Show values',
+  onClick: () => {
+    console.log('values', form.getValues());
+  },
+}));
+
+const InitValue = createContainer(Button, (form, { title, value, name, isSilent = false  } = {}) => ({
+  onClick: () => {
+    form.setInitValues({ [name || 'hidden']: value || 'awesomeValue' }, isSilent);
+  },
+  title: title || 'Init value',
+}));
+
 const FormContainer = createFormContainer(Form, { schema, errorCodes }, (form) => ({ isValid: form.isValid() }));
 const OnlyOnSubmit = createFormContainer(Form, { schema, errorCodes, errorStrategy: errorStrategies.ON_SUBMIT });
 const OnlyOnBlur = createFormContainer(Form, { schema, errorCodes, errorStrategy: errorStrategies.ON_BLUR });
@@ -99,6 +113,17 @@ storiesOf('Test', module)
         <TextFieldContainer value={"123"} name="foo" />
         <TextFieldContainer value={"bar"}  name="bar" />
         <Submit isDisabledOnInvalid={false} title="submit" />
+      </div>
+    </Submitting>,
+  )
+  .add('initValue', () =>
+    <Submitting>
+      <div>
+        <TextFieldContainer value={"123"} name="foo" />
+        <TextFieldContainer value={"bar"}  name="bar" />
+        <InitValue />
+        <InitValue isSilent title="Silent init value" />
+        <ShowValues />
       </div>
     </Submitting>,
   );
