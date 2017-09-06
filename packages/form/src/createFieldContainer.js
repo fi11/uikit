@@ -73,6 +73,10 @@ export default FieldComponent => {
     }
 
     getStore() {
+      if (this.context.formState) {
+        throw new Error('Form field error: you must provide context for form field, use "createFormContainer" or "connectForm" decorator');
+      }
+
       return this.context.formState.getStore();
     }
 
