@@ -7,6 +7,7 @@ import createContainer from './createContainer';
 
 import Form from './Form';
 import Field from './Field';
+import WithFormState from './WithFormState';
 
 import empty from './empty';
 import required from './required';
@@ -29,4 +30,5 @@ export {
   errorStrategies,
   Form,
   Field,
+  WithFormState,
 };
