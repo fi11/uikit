@@ -175,7 +175,7 @@ class Form extends Component {
     const { onSubmit } = this.props;
 
     this.getStore().markAsSubmitted();
-    onSubmit && onSubmit();
+    onSubmit && onSubmit(this.getChildContext().formState);
   }
 
   render() {
