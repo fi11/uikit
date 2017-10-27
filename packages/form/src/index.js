@@ -5,6 +5,9 @@ import createFormContainer from './createFormContainer';
 import createFieldContainer from './createFieldContainer';
 import createContainer from './createContainer';
 
+import Form from './Form';
+import Field from './Field';
+
 import empty from './empty';
 import required from './required';
 
@@ -24,4 +27,6 @@ export {
   createFieldContainer,
   createContainer,
   errorStrategies,
+  Form,
+  Field,
 };
