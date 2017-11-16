@@ -1,4 +1,5 @@
-import { create } from 'jss';
+import { create, SheetsRegistry } from 'jss';
+
 import camelCase from 'jss-camel-case';
 import defaultUnit from 'jss-default-unit';
 import nested from 'jss-nested';
@@ -11,14 +12,16 @@ jss.use(defaultUnit());
 jss.use(nested());
 jss.use(vendorPrefixer());
 
+const sheets = new SheetsRegistry();
+export const getSSRStyleSheets = () => sheets.toString();
+
 export default class StyleSheet {
   static create(styles: Object) {
     const sheet = jss.createStyleSheet(styles).attach();
+    sheets.add(sheet);
 
     return sheet.classes;
   }
 
-  static getServerSideStyleSheets() {
-    return jss.sheets.toString();
-  }
+  static getSSRStyleSheets = getSSRStyleSheets;
 }
