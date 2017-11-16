@@ -1,5 +1,4 @@
 import DI from '@uikit/di';
-import React from 'react';
 
 const removeTrashFormProps = (props, styleRules) => {
   const propsToDelete = Object.keys(styleRules)
