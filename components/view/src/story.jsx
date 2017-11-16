@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import '@uikit/styled-react';
-import styled from '@uikit/styled';
+import styled, { withTag } from '@uikit/styled';
 import View from './View';
 
 const Link = styled('a.Link', {
@@ -67,6 +67,8 @@ const NotView = styled(SomeComponent, {
   },
 });
 
+const SpanLink = withTag(Link, 'span');
+
 storiesOf('View', module)
   .add('flex box', () => (
     <View
@@ -96,4 +98,5 @@ storiesOf('View', module)
   .add('styled view with style rule as func', () => (
     <BlackSquareWithSize size={400} />
   ))
-  .add('styled not view component', () => <NotView />);
+  .add('styled not view component', () => <NotView />)
+  .add('styled redefined "span" tag', () => <SpanLink>Span link</SpanLink>);

@@ -98,6 +98,7 @@ const styled = (element, styleRules) => {
 
   Styled.getRawStyles = () => ({ ...styleRules });
   Styled.getTagName = () => tag;
+  Styled.setTagName = value => (tag = value);
   Styled.getElementName = () => elementName;
   Styled.__IS_WRAPPER__ = true;
 
