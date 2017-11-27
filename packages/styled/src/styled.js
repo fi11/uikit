@@ -102,6 +102,14 @@ const styled = (element, styleRules) => {
   Styled.getElementName = () => elementName;
   Styled.__IS_WRAPPER__ = true;
 
+  if (element.defaultProps) {
+    Styled.defaultProps = element.defaultProps;
+  }
+
+  if (element.propTypes) {
+    Styled.propTypes = element.propTypes
+  }
+
   return Styled;
 };
 
