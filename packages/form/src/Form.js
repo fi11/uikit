@@ -38,9 +38,6 @@ class Form extends Component {
     this.configure(props);
     this.state = this.getState(this.form, props);
     this.onSubmit = this.onSubmit.bind(this);
-
-    console.log('this form', this.form);
-    console.log('this state', this.state);
   }
 
   static childContextTypes = {
