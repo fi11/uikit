@@ -1,6 +1,6 @@
 {
   "name": "@uikit/teleport",
-  "version": "0.0.1",
+  "version": "0.0.23",
   "description": "Teleport component",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -36,7 +36,7 @@
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
-    "@uikit/state-provider": "^0.0.1",
+    "@uikit/state-provider": "^0.0.23",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"

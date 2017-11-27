@@ -1,6 +1,6 @@
 {
   "name": "@uikit/autoclosable",
-  "version": "0.0.1",
+  "version": "0.0.23",
   "description": "AutoClosable component",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -28,7 +28,7 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/utils": "^0.0.11"
+    "@uikit/utils": "^0.0.23"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",

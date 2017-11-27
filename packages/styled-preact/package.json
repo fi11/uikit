@@ -1,6 +1,6 @@
 {
   "name": "@uikit/styled-preact",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "Preact dependency for styled lib",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -28,7 +28,7 @@
   "dependencies": {
     "@uikit/di": "^0.0.11",
     "@uikit/preact": "^0.0.17",
-    "@uikit/styled": "^0.0.22",
+    "@uikit/styled": "^0.0.23",
     "@uikit/stylesheet": "^0.0.22"
   },
   "devDependencies": {
