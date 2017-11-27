@@ -107,7 +107,7 @@ const styled = (element, styleRules) => {
   }
 
   if (element.propTypes) {
-    Styled.propTypes = element.propTypes
+    Styled.propTypes = element.propTypes;
   }
 
   return Styled;

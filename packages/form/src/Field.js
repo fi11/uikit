@@ -68,7 +68,7 @@ class Field extends Component {
   }
 
   componentWillReceiveProps({ value = null, name }) {
-    value  = value || null;
+    value = value || null;
     const store = this.getStore();
     if (value !== store.getInitValue(name)) {
       store.initField(name, value);
