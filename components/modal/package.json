@@ -1,6 +1,6 @@
 {
   "name": "@uikit/modal",
-  "version": "0.0.1",
+  "version": "0.0.24",
   "description": "Modal component",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -28,9 +28,9 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/teleport": "0.0.23",
-    "@uikit/autoclosable": "0.0.23",
-    "@uikit/transition": "0.0.1"
+    "@uikit/autoclosable": "^0.0.24",
+    "@uikit/teleport": "^0.0.24",
+    "@uikit/transition": "^0.0.24"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",
@@ -42,7 +42,7 @@
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
     "@uikit/overlay": "0.0.23",
-    "@uikit/state-provider": "^0.0.23",
+    "@uikit/state-provider": "^0.0.24",
     "@uikit/styled": "^0.0.23",
     "@uikit/styled-react": "^0.0.23",
     "prop-types": "^15.6.0",
