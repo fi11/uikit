@@ -11,7 +11,7 @@ export default class AutoClosable extends React.Component {
     /**
 		 * On close event handler
 		 */
-    onClose: PropTypes.func,
+    onRequestClose: PropTypes.func,
     /**
 		 * Optional parent dom node, click event on parent dom node don't fire close event
 		 */
@@ -50,7 +50,7 @@ export default class AutoClosable extends React.Component {
 
   _emitClose() {
     const props = this.props;
-    props.onClose && props.onClose();
+    props.onRequestClose && props.onRequestClose();
   }
 
   componentWillUnmount() {

@@ -12,7 +12,7 @@ const Popup = ({ children }) => (
 );
 
 storiesOf('AutoClosable', module).add('AutoClosable Popup window', () => (
-  <AutoClosable onClose={action('close')}>
+  <AutoClosable onRequestClose={action('close')}>
     <Popup>Popup window</Popup>
   </AutoClosable>
 ));
