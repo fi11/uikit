@@ -1,6 +1,6 @@
 {
   "name": "@uikit/tail",
-  "version": "0.0.1",
+  "version": "0.0.25",
   "description": "Tail component",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -31,7 +31,7 @@
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
-    "react": "^15.5.4",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "react": "^15.5.4"
   }
 }
