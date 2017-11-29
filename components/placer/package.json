@@ -1,0 +1,49 @@
+{
+  "name": "@uikit/placer",
+  "version": "0.0.24",
+  "description": "Placer component",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fi11/uikit"
+  },
+  "bugs": {
+    "url": "https://github.com/fi11/uikit/issues"
+  },
+  "keywords": [
+    "ui",
+    "react"
+  ],
+  "homepage": "https://github.com/fi11/uikit",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "node ../../scripts/prepublish.js",
+    "storybook": "start-storybook -p 9010"
+  },
+  "author": "Pavel Silin",
+  "license": "MIT",
+  "dependencies": {
+    "@uikit/teleport": "^0.0.24",
+    "@uikit/utils": "^0.0.23",
+    "raf": "3.4.0"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-knobs": "^3.2.8",
+    "@storybook/addons": "^3.2.6",
+    "@storybook/react": "^3.2.8",
+    "@uikit/state-provider": "^0.0.24",
+    "prop-types": "^15.6.0",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1"
+  }
+}
