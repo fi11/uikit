@@ -110,19 +110,27 @@ export default class Placer extends React.Component {
   }
 
   render() {
-    const props = this.props;
+    const {
+      onPresetSelected,
+      presets,
+      viewportAccuracyFactor,
+      zIndex,
+      children,
+      content,
+    } = this.props;
     return (
       <Fragment>
-        {this.props.children}
+        {children}
         <Teleport ref={this._onTeleportMountHandler}>
           <PlacerWrapper
-            zIndex={props.zIndex}
+            zIndex={zIndex}
             getTargetRect={this._getTargetRect}
-            presets={props.presets}
-            viewportAccuracyFactor={props.viewportAccuracyFactor}
+            presets={presets}
+            viewportAccuracyFactor={viewportAccuracyFactor}
             onDidMount={this._onWrapperMountHandler}
+            onPresetSelected={onPresetSelected}
           >
-            {props.content}
+            {content}
           </PlacerWrapper>
         </Teleport>
       </Fragment>

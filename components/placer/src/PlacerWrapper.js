@@ -225,6 +225,7 @@ export default class PlacerWrapper extends React.Component {
   }
 
   updatePosition() {
+    const { onPresetSelected } = this.props;
     const args = this._getArgumentsForPositionCalculation();
     const bestPreset = this._getBestPreset(...args);
     const position = calculatePreset(bestPreset, ...args);
@@ -237,6 +238,8 @@ export default class PlacerWrapper extends React.Component {
     };
 
     if (!this._isNewPreseEqualEqula(bestPreset)) {
+      onPresetSelected && onPresetSelected(bestPreset);
+
       this.setState(
         {
           currentPreset: bestPreset,
