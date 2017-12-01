@@ -1,6 +1,6 @@
 {
   "name": "@uikit/popover",
-  "version": "0.0.1",
+  "version": "0.0.26",
   "description": "Popover component",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -28,11 +28,11 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/teleport": "^0.0.24",
-    "@uikit/placer": "^0.0.25",
-    "@uikit/transition": "^0.0.24",
     "@uikit/autoclosable": "^0.0.24",
-    "@uikit/tail": "^0.0.25"
+    "@uikit/placer": "^0.0.26",
+    "@uikit/tail": "^0.0.26",
+    "@uikit/teleport": "^0.0.24",
+    "@uikit/transition": "^0.0.24"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",
