@@ -1,6 +1,6 @@
 {
   "name": "@uikit/popover",
-  "version": "0.0.27",
+  "version": "0.0.29",
   "description": "Popover component",
   "main": "lib/index.js",
   "module": "lib/index.js",
