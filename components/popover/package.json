@@ -1,6 +1,6 @@
 {
   "name": "@uikit/popover",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "Popover component",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -32,7 +32,7 @@
     "@uikit/placer": "^0.0.26",
     "@uikit/tail": "^0.0.26",
     "@uikit/teleport": "^0.0.24",
-    "@uikit/transition": "^0.0.24"
+    "@uikit/transition": "^0.0.27"
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",
