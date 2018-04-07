@@ -65,8 +65,8 @@ class Popover extends React.Component {
           }
         >
           {this.props.children({
-            show: this.toggle,
-            hide: this.toggle,
+            show: this.show,
+            hide: this.hide,
             toggle: this.toggle,
           })}
         </Placer>
@@ -74,8 +74,8 @@ class Popover extends React.Component {
     }
 
     return this.props.children({
-      show: this.toggle,
-      hide: this.toggle,
+      show: this.show,
+      hide: this.hide,
       toggle: this.toggle,
     });
   }
