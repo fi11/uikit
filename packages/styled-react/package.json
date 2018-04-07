@@ -1,6 +1,6 @@
 {
   "name": "@uikit/styled-react",
-  "version": "0.0.23",
+  "version": "0.0.28",
   "description": "React dependency for styled lib",
   "main": "lib/index.js",
   "module": "lib/index.js",
