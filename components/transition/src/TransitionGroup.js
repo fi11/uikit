@@ -1,6 +1,6 @@
 import React from 'react';
 
-class TransitionGroup extends React.Component {
+export class TransitionGroup extends React.Component {
   state = { lockIdx: null };
   _lockIdx = null;
 
@@ -48,5 +48,3 @@ class TransitionGroup extends React.Component {
     });
   }
 }
-
-export default TransitionGroup;

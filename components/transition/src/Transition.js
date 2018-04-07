@@ -2,20 +2,20 @@ import React from 'react';
 import raf from 'raf';
 import PropTypes from 'prop-types';
 
-export default class Transition extends React.Component {
+export class Transition extends React.Component {
   static propTypes = {
-    enterStyle: PropTypes.object,
-    leaveStyle: PropTypes.object,
-    enterTimeout: PropTypes.number,
-    leaveTimeout: PropTypes.number,
-    updateTimeout: PropTypes.number,
-    timeout: PropTypes.number,
-    isImmediatelyUpdate: PropTypes.bool,
-    updateDelay: PropTypes.number,
-    onWillEnter: PropTypes.func,
-    onDidEnter: PropTypes.func,
-    onWillLeave: PropTypes.func,
-    onDidLeave: PropTypes.func,
+    // enterStyle: PropTypes.object,
+    // leaveStyle: PropTypes.object,
+    // enterTimeout: PropTypes.number,
+    // leaveTimeout: PropTypes.number,
+    // updateTimeout: PropTypes.number,
+    // timeout: PropTypes.number,
+    // isImmediatelyUpdate: PropTypes.bool,
+    // updateDelay: PropTypes.number,
+    // onWillEnter: PropTypes.func,
+    // onDidEnter: PropTypes.func,
+    // onWillLeave: PropTypes.func,
+    // onDidLeave: PropTypes.func
   };
 
   static defaultProps = {
@@ -123,6 +123,7 @@ export default class Transition extends React.Component {
             const timeout = this._getTimeout('enter');
             setTimeout(
               () =>
+                this._isMounted &&
                 this.setState(
                   { isDidEnter: true },
                   () => onDidEnter && onDidEnter(),
@@ -223,3 +224,5 @@ function InitEmptyState() {
   this.isUpdate = false;
   this.isDidEnter = false;
 }
+
+export default Transition;

@@ -169,11 +169,6 @@ export const getTailParams = ({
       offset = Math.max(tail.offsetX, 0);
     }
 
-    console.log(
-      '#offset',
-      { offset, maxXOffset },
-      Math.min(offset, maxXOffset),
-    );
     return {
       direction: 'bottom',
       style: {

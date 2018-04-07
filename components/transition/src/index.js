@@ -1,2 +1,2 @@
-export { default } from './Transition';
-export { default as TransitionGroup } from './TransitionGroup';
+export { default, Transition } from './Transition';
+export { TransitionGroup } from './TransitionGroup';
