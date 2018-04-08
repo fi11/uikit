@@ -73,7 +73,6 @@ const getTailTransform = (direction, size) => {
 const STYLES = {
   tailRoot: {
     position: 'relative',
-    display: 'inline-block',
     overflow: 'hidden',
   },
   tail: {
