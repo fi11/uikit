@@ -1,6 +1,6 @@
 import StyleSheet from './StyleSheet';
 
-const getClassName = (prefix, name) => `${prefix}_${name}`.replace(/:/g, '-');
+const getClassName = key => key.replace(/:/g, '-');
 
 export default (elementName, styleRules) => {
   const styleRulesAsFunc = {};
@@ -11,7 +11,7 @@ export default (elementName, styleRules) => {
 
       const container = typeof rule === 'object' ? result : styleRulesAsFunc;
 
-      container[getClassName(elementName, key)] = styleRules[key];
+      container[getClassName(key)] = styleRules[key];
 
       return result;
     }, {}),
