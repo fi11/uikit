@@ -1,6 +1,6 @@
 {
   "name": "@uikit/stylesheet",
-  "version": "0.0.22",
+  "version": "0.0.31",
   "description": "StyleSheet class for browser",
   "main": "lib/index.js",
   "module": "lib/index.js",
