@@ -21,10 +21,10 @@ export default (elementName, styleRules) => {
     get: (key, arg) => {
       if (arg) {
         return StyleSheet.create({
-          [key]: styleRulesAsFunc[getClassName(elementName, key)](arg),
+          [key]: styleRulesAsFunc[getClassName(key)](arg),
         })[key];
       }
-      return compiledRules[getClassName(elementName, key)];
+      return compiledRules[getClassName(key)];
     },
   };
 };
