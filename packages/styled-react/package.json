@@ -1,6 +1,6 @@
 {
   "name": "@uikit/styled-react",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "React dependency for styled lib",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -29,7 +29,7 @@
     "@uikit/di": "^0.0.11",
     "@uikit/react": "^0.0.11",
     "@uikit/styled": "^0.0.23",
-    "@uikit/stylesheet": "^0.0.31"
+    "@uikit/stylesheet": "^0.0.32"
   },
   "devDependencies": {
     "react": "^15.5.4"

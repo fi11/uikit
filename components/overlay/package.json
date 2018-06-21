@@ -1,6 +1,6 @@
 {
   "name": "@uikit/overlay",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "Overlay component",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -35,7 +35,7 @@
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
     "@uikit/styled": "^0.0.23",
-    "@uikit/styled-react": "^0.0.31",
+    "@uikit/styled-react": "^0.0.32",
     "react": "^15.5.4"
   }
 }
