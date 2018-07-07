@@ -1,5 +1,4 @@
-import DI from '@uikit/di';
-const styled = DI.get('@uikit/styled');
+import styled from '@uikit/styled-react';
 
 const Overlay = styled({
   root: {

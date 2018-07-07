@@ -27,15 +27,13 @@
   },
   "author": "Pavel Silin",
   "license": "MIT",
-  "dependencies": {
-    "@uikit/di": "^0.0.11"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
     "@uikit/styled": "^0.0.33",
-    "@uikit/styled-react": "^0.0.33",
+    "@uikit/styled-react": "0.0.33",
     "react": "^15.5.4"
   }
 }

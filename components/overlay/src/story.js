@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import '@uikit/styled-react';
-import styled from '@uikit/styled';
+import styled from '@uikit/styled-react';
 import Overlay from './index';
 
 const Root = styled('div', {
