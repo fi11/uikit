@@ -1,11 +1,21 @@
-import '@uikit/stylesheet';
-import '@uikit/styled';
-import '@uikit/react';
-import styled from '@uikit/styled';
+import React from 'react';
+import { compileStyles, createStyleProp } from '@uikit/stylesheet';
+import createStyled from '@uikit/styled';
 
-import DI from '@uikit/di';
 import getView from './getView';
 
-DI.provide('@uikit/getView', null, { fabric: () => getView });
+export const styled = createStyled({
+  createElement: React.createElement.bind(React),
+  compileStyles,
+  getView: () => getView(styled),
+  createStyleProp,
+});
 
 export default styled;
+
+export const withTag = (target, tagName) => {
+  const result = styled(target, {});
+  result.setTagName(tagName);
+
+  return result;
+};

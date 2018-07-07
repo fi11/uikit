@@ -26,10 +26,10 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/di": "^0.0.11",
-    "@uikit/preact": "^0.0.17",
-    "@uikit/styled": "^0.0.23",
-    "@uikit/stylesheet": "^0.0.32"
+    "@uikit/di": "0.0.11",
+    "@uikit/preact": "0.0.17",
+    "@uikit/styled": "0.0.23",
+    "@uikit/stylesheet": "0.0.32"
   },
   "devDependencies": {
     "preact": "^8.2.5"

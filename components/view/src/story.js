@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import '@uikit/styled-react';
-import styled, { withTag } from '@uikit/styled';
+import styled, { withTag } from '@uikit/styled-react';
 import View from './View';
 
 const Link = styled('a.Link', {
@@ -96,7 +95,12 @@ storiesOf('View', module)
     <SquareWithThemedBorder hasBorder theme="green" white />
   ))
   .add('styled view with style rule as func', () => (
-    <BlackSquareWithSize size={400} />
+    <div>
+      <BlackSquareWithSize size={50} />
+      <BlackSquareWithSize size={50} />
+      <BlackSquareWithSize size={50} />
+      <BlackSquareWithSize size={50} />
+    </div>
   ))
   .add('styled not view component', () => <NotView />)
   .add('styled redefined "span" tag', () => <SpanLink>Span link</SpanLink>);

@@ -28,9 +28,7 @@
   },
   "author": "Pavel Silin",
   "license": "MIT",
-  "dependencies": {
-    "@uikit/di": "^0.0.11"
-  },
+  "dependencies": {},
   "devDependencies": {
     "react": "^15.5.4"
   }

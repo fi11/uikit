@@ -26,8 +26,6 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/di": "^0.0.11",
-    "@uikit/react": "^0.0.11",
     "@uikit/styled": "^0.0.23",
     "@uikit/stylesheet": "^0.0.32"
   },
