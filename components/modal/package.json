@@ -34,8 +34,8 @@
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1"
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   },
   "devDependencies": {
     "@storybook/addon-knobs": "^3.2.8",
@@ -46,7 +46,7 @@
     "@uikit/styled": "^0.0.36",
     "@uikit/styled-react": "^0.0.36",
     "prop-types": "^15.6.0",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1"
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   }
 }

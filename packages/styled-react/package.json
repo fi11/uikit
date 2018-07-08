@@ -30,9 +30,9 @@
     "@uikit/stylesheet": "^0.0.34"
   },
   "devDependencies": {
-    "react": "^15.5.4"
+    "react": "^16.4.0"
   },
   "peerDependencies": {
-    "react": "^15.5.4"
+    "react": "^16.4.0"
   }
 }

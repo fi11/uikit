@@ -29,13 +29,13 @@
   "license": "MIT",
   "peerDependencies": {
     "prop-types": "^15.6.0",
-    "react": "^16.1.1"
+    "react": "^16.4.0"
   },
   "devDependencies": {
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
     "prop-types": "^15.6.0",
-    "react": "^16.1.1"
+    "react": "^16.4.0"
   }
 }

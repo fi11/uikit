@@ -41,7 +41,7 @@
     "@storybook/react": "^3.2.8",
     "@uikit/state-provider": "^0.0.24",
     "prop-types": "^15.6.0",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1"
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   }
 }

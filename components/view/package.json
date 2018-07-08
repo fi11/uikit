@@ -36,6 +36,6 @@
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
     "@uikit/styled-react": "^0.0.36",
-    "react": "^15.5.4"
+    "react": "^16.4.0"
   }
 }
