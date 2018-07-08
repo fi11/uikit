@@ -1,6 +1,6 @@
 let idCount = 0;
 
-const removeTrashFormProps = (props, styleRules) => {
+const removeTrashFromProps = (props, styleRules) => {
   const propsToDelete = Object.keys(styleRules)
     .map(i => i.replace(/:.+$/, ''))
     .reduce((result, key) => {
@@ -86,7 +86,7 @@ export const createStyled = ({ createElement, compileStyles, getView,  createSty
       const styleProp = createStyleProp(styles);
 
       return {
-        ...removeTrashFormProps(props, styleRules),
+        ...removeTrashFromProps(props, styleRules),
         [styleProp.key]: props[styleProp.key] || styleProp.value,
       };
     };
