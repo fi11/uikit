@@ -6,6 +6,7 @@ import View from './View';
 const Link = styled('a.Link', {
   root: {
     color: '#61dafb',
+    fontSize: '16px',
   },
 });
 
@@ -58,6 +59,13 @@ const BlackSquareWithSize = styled(RedSquareWithBoarder, {
   }),
 });
 
+const ExtentedView = styled(View, {
+  root: {
+    border: '1px solid',
+    fontSize: '14px',
+  },
+});
+
 const SomeComponent = ({ className }) => <div className={className} />;
 const NotView = styled(SomeComponent, {
   root: {
@@ -68,6 +76,9 @@ const NotView = styled(SomeComponent, {
 });
 
 const SpanLink = withTag(Link, 'span');
+const SectionNotStyled = ({ className, children }) => (
+  <section className={`section ${className}`}>{children}</section>
+);
 
 storiesOf('View', module)
   .add('flex box', () => (
@@ -107,4 +118,17 @@ storiesOf('View', module)
     </div>
   ))
   .add('styled not view component', () => <NotView />)
-  .add('styled redefined "span" tag', () => <SpanLink>Span link</SpanLink>);
+  .add('styled redefined "span" tag', () => <SpanLink>Span link</SpanLink>)
+  .add('extend view with className', () => (
+    <ExtentedView className={'test'}>Section</ExtentedView>
+  ))
+  .add('view as section', () => <View as="section">Section</View>)
+  .add('extend view as section', () => (
+    <ExtentedView as="section">Section</ExtentedView>
+  ))
+  .add('extend view as not styled react component', () => (
+    <ExtentedView as={SectionNotStyled}>Section</ExtentedView>
+  ))
+  .add('extend view as styled Link', () => (
+    <ExtentedView as={Link}>Section</ExtentedView>
+  ));

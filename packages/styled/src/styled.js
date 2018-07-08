@@ -10,7 +10,7 @@ const removeTrashFromProps = (props, styleRules) => {
     }, {});
 
   return Object.keys(props).reduce((result, key) => {
-    if (!propsToDelete[key]) {
+    if (!propsToDelete[key] && key !== 'as') {
       result[key] = props[key];
     }
 
@@ -18,7 +18,12 @@ const removeTrashFromProps = (props, styleRules) => {
   }, {});
 };
 
-export const createStyled = ({ createElement, compileStyles, getView,  createStyleProp }) => {
+export const createStyled = ({
+  createElement,
+  compileStyles,
+  getView,
+  createStyleProp,
+}) => {
   const styled = (element, styleRules) => {
     const uniqID = ++idCount;
 
@@ -48,7 +53,9 @@ export const createStyled = ({ createElement, compileStyles, getView,  createSty
 
     let [tag, elementName] = element.__IS_WRAPPER__
       ? [element.getTagName(), element.name || element.getElementName()]
-      : typeof element === 'string' ? element.split('.') : [null, element.name];
+      : typeof element === 'string'
+        ? element.split('.')
+        : [null, element.name];
 
     elementName = elementName || 's';
 
@@ -85,14 +92,34 @@ export const createStyled = ({ createElement, compileStyles, getView,  createSty
 
       const styleProp = createStyleProp(styles);
 
-      return {
+      const newProps = {
         ...removeTrashFromProps(props, styleRules),
-        [styleProp.key]: props[styleProp.key] || styleProp.value,
       };
+
+      if (styleProp.key === 'className' && props.className) {
+        newProps[styleProp.key] = `${props.className} ${styleProp.value}`;
+      } else if (
+        styleProp.key === 'style' &&
+        props.style &&
+        typeof props.style === 'object' &&
+        typeof styleProp.value === 'object'
+      ) {
+        newProps[styleProp.key] = { ...props.style, ...styleProp.value };
+      } else {
+        newProps[styleProp.key] = styleProp.value || props[styleProp.key];
+      }
+
+      return newProps;
     };
 
-    const Styled = props =>
-      createElement(tag || element, getComponentProps(props));
+    const Styled = ({ as, ...props }) => {
+      if (as && as.__IS_WRAPPER__) {
+        const AsStyled = styled(as, styleRules);
+        return createElement(AsStyled, props);
+      }
+
+      return createElement(as ? as : tag || element, getComponentProps(props));
+    };
 
     Styled.getRawStyles = () => ({ ...styleRules });
     Styled.getTagName = () => tag;
