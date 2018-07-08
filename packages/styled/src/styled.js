@@ -61,34 +61,37 @@ export const createStyled = ({
 
     const compiledStyles = compileStyles(elementName, styleRules, uniqID);
     const getComponentProps = props => {
-      const styles = Object.keys(styleRules).reduce((result, key) => {
+      let styles = Object.keys(styleRules).reduce((result, key) => {
         const clearKey = key.replace(/:\w+/g, '');
         const propValue = props[clearKey];
 
         if (key === 'root') {
-          result.push(compiledStyles.get(key));
-
+          result[compiledStyles.get(key)] = true;
           return result;
         }
 
         if (propValue) {
           if (typeof styleRules[key] === 'function') {
-            result.push(compiledStyles.get(key, propValue));
+            result[compiledStyles.get(key, propValue)] = true;
             return result;
           }
 
           if (/:\w+/g.test(key)) {
             const st = compiledStyles.get(`${clearKey}:${propValue}`);
-            st && result.push(st);
+            if (st) {
+              result[st] = true;
+            }
 
             return result;
           }
 
-          result.push(compiledStyles.get(key));
+          result[compiledStyles.get(key)] = true;
         }
 
         return result;
-      }, []);
+      }, {});
+
+      styles = Object.keys(styles);
 
       const styleProp = createStyleProp(styles);
 
@@ -97,7 +100,7 @@ export const createStyled = ({
       };
 
       if (styleProp.key === 'className' && props.className) {
-        newProps[styleProp.key] = `${props.className} ${styleProp.value}`;
+        newProps[styleProp.key] = `${styleProp.value} ${props.className}`;
       } else if (
         styleProp.key === 'style' &&
         props.style &&

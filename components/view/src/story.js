@@ -80,6 +80,19 @@ const SectionNotStyled = ({ className, children }) => (
   <section className={`section ${className}`}>{children}</section>
 );
 
+const WithTrailer = styled({
+  root: {},
+  'trailer:1': {
+    marginBottom: 8,
+  },
+  'trailer:2': {
+    marginBottom: 16,
+  },
+  'trailer:3': {
+    marginBottom: 24,
+  },
+});
+
 storiesOf('View', module)
   .add('flex box', () => (
     <View
@@ -131,4 +144,11 @@ storiesOf('View', module)
   ))
   .add('extend view as styled Link', () => (
     <ExtentedView as={Link}>Section</ExtentedView>
+  ))
+  .add('many values of prop', () => (
+    <div>
+      <WithTrailer trailer={1}>WithTrailer</WithTrailer>
+      <WithTrailer trailer={2}>WithTrailer</WithTrailer>
+      <WithTrailer trailer={3}>WithTrailer</WithTrailer>
+    </div>
   ));
