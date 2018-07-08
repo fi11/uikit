@@ -1,6 +1,6 @@
 {
   "name": "@uikit/modal",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "Modal component",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -41,10 +41,10 @@
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addons": "^3.2.6",
     "@storybook/react": "^3.2.8",
-    "@uikit/overlay": "^0.0.33",
+    "@uikit/overlay": "^0.0.34",
     "@uikit/state-provider": "^0.0.24",
-    "@uikit/styled": "^0.0.33",
-    "@uikit/styled-react": "^0.0.33",
+    "@uikit/styled": "^0.0.34",
+    "@uikit/styled-react": "^0.0.34",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
