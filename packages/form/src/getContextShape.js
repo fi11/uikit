@@ -1,8 +1,6 @@
-import DI from '@uikit/di';
+import PropTypes from 'prop-types';
 
 export default () => {
-  const PropTypes = DI.get('@uikit/PropTypes');
-
   return PropTypes.shape({
     getValues: PropTypes.func.isRequired,
     getChanges: PropTypes.func.isRequired,

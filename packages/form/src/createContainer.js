@@ -1,9 +1,10 @@
-import DI from '@uikit/di';
+import React from 'react';
+import propTypes from 'prop-types';
 import WithFormState from './WithFormState';
 
 export default (Component, mapStateToProps) => {
-  const PureComponent = DI.get('@uikit/PureComponent');
-  const createElement = DI.get('@uikit/createElement');
+  const PureComponent = React.PureComponent;
+  const createElement = React.createElement.bind(React);
 
   class WithConnectedForm extends PureComponent {
     render() {

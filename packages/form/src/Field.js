@@ -1,9 +1,9 @@
-import DI from '@uikit/di';
+import React from 'react';
+import propTypes from 'prop-types';
 import getContextShape from './getContextShape';
 import * as STATUSES from './fieldStatuses';
 
-const Component = DI.get('@uikit/PureComponent');
-const propTypes = DI.get('@uikit/PropTypes');
+const Component = React.PureComponent;
 
 class Field extends Component {
   static contextTypes = {

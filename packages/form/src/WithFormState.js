@@ -1,9 +1,10 @@
-import DI from '@uikit/di';
+import React from 'react';
+import propTypes from 'prop-types';
 import getContextShape from './getContextShape';
-const PureComponent = DI.get('@uikit/PureComponent');
-const propTypes = DI.get('@uikit/PropTypes');
 
-class WithFormState extends PureComponent {
+const Component = React.PureComponent;
+
+class WithFormState extends Component {
   static contextTypes = {
     formState: getContextShape(),
   };

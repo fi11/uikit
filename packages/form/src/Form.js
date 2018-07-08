@@ -1,11 +1,11 @@
-import DI from '@uikit/di';
+import React from 'react';
+import propTypes from 'prop-types';
 import getContextShape from './getContextShape';
 import Validator from './Validator';
 import Store from './Store';
 import * as errorStrategies from './errorStrategies';
 
-const Component = DI.get('@uikit/PureComponent');
-const propTypes = DI.get('@uikit/PropTypes');
+const Component = React.PureComponent;
 
 class Form extends Component {
   static propTypes = {

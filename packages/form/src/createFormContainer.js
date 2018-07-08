@@ -1,4 +1,5 @@
-import DI from '@uikit/di';
+import React from 'react';
+import propTypes from 'prop-types';
 import Form from './Form';
 
 export default (
@@ -6,8 +7,8 @@ export default (
   { name = 'form', schema, errorCodes = {}, errorStrategy } = {},
   mapStateToProps,
 ) => {
-  const Component = DI.get('@uikit/PureComponent');
-  const createElement = DI.get('@uikit/createElement');
+  const Component = React.PureComponent;
+  const createElement = React.createElement.bind(React);
 
   return class FormContainer extends Component {
     render() {
