@@ -1,6 +1,6 @@
 {
   "name": "@uikit/autoclosable",
-  "version": "0.0.24",
+  "version": "0.0.37",
   "description": "AutoClosable component",
   "main": "lib/index.js",
   "module": "lib/index.js",
