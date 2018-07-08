@@ -50,6 +50,7 @@ const SquareWithThemedBorder = styled(RedSquareWithBoarder, {
 const BlackSquareWithSize = styled(RedSquareWithBoarder, {
   root: {
     backgroundColor: 'black',
+    marginBottom: 8,
   },
   size: size => ({
     width: size,
@@ -100,6 +101,9 @@ storiesOf('View', module)
       <BlackSquareWithSize size={50} />
       <BlackSquareWithSize size={50} />
       <BlackSquareWithSize size={50} />
+      <BlackSquareWithSize size={55} />
+      <BlackSquareWithSize size={50} />
+      <BlackSquareWithSize size={55} />
     </div>
   ))
   .add('styled not view component', () => <NotView />)

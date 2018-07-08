@@ -1,3 +1,5 @@
+let idCount = 0;
+
 const removeTrashFormProps = (props, styleRules) => {
   const propsToDelete = Object.keys(styleRules)
     .map(i => i.replace(/:.+$/, ''))
@@ -18,6 +20,8 @@ const removeTrashFormProps = (props, styleRules) => {
 
 export const createStyled = ({ createElement, compileStyles, getView,  createStyleProp }) => {
   const styled = (element, styleRules) => {
+    const uniqID = ++idCount;
+
     if (typeof styleRules === 'undefined') {
       styleRules = element;
       element = getView(styled);
@@ -48,7 +52,7 @@ export const createStyled = ({ createElement, compileStyles, getView,  createSty
 
     elementName = elementName || 's';
 
-    const compiledStyles = compileStyles(elementName, styleRules);
+    const compiledStyles = compileStyles(elementName, styleRules, uniqID);
     const getComponentProps = props => {
       const styles = Object.keys(styleRules).reduce((result, key) => {
         const clearKey = key.replace(/:\w+/g, '');
