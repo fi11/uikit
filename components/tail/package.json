@@ -1,6 +1,6 @@
 {
   "name": "@uikit/tail",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "description": "Tail component",
   "main": "lib/index.js",
   "module": "lib/index.js",
