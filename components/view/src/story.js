@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import styled, { withTag } from '@uikit/styled-react';
+import styled, { withTag, StyledProvider, createRegistry } from '@uikit/styled-react';
 import View from './View';
 
 const Link = styled('a.Link', {
@@ -64,6 +64,7 @@ const ExtentedView = styled(View, {
     border: '1px solid',
     fontSize: '14px',
   },
+  width: width => ({ width })
 });
 
 const SomeComponent = ({ className }) => <div className={className} />;
@@ -79,6 +80,30 @@ const SpanLink = withTag(Link, 'span');
 const SectionNotStyled = ({ className, children }) => (
   <section className={`section ${className}`}>{children}</section>
 );
+
+const WithRegistry = () => {
+  const registry = createRegistry();
+  return (
+    <StyledProvider value={{ sheetsRegistry: registry }}>
+      <BlackSquareWithSize size={50} />
+      <button onClick={() => console.log('registry.toString:', registry.toString())}>
+        console.log registry
+      </button>
+    </StyledProvider>
+  )
+};
+
+const LinkWithRegistry = () => {
+  const registry = createRegistry();
+  return (
+    <StyledProvider value={{ sheetsRegistry: registry }}>
+      <ExtentedView as={Link} width={300}>Section</ExtentedView>
+      <button onClick={() => console.log('registry.toString:', registry.toString())}>
+        console.log registry
+      </button>
+    </StyledProvider>
+  )
+};
 
 const WithTrailer = styled({
   root: {},
@@ -150,5 +175,15 @@ storiesOf('View', module)
       <WithTrailer trailer={1}>WithTrailer</WithTrailer>
       <WithTrailer trailer={2}>WithTrailer</WithTrailer>
       <WithTrailer trailer={3}>WithTrailer</WithTrailer>
+    </div>
+  ))
+  .add('with registry context', () => (
+    <div>
+      <WithRegistry />
+    </div>
+  ))
+  .add('as Link with registry context', () => (
+    <div>
+      <LinkWithRegistry />
     </div>
   ));

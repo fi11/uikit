@@ -23,6 +23,7 @@ export const createStyled = ({
   compileStyles,
   getView,
   createStyleProp,
+                               ContextConsumer,
 }) => {
   const styled = (element, styleRules) => {
     const uniqID = ++idCount;
@@ -60,7 +61,7 @@ export const createStyled = ({
     elementName = elementName || 's';
 
     const compiledStyles = compileStyles(elementName, styleRules, uniqID);
-    const getComponentProps = props => {
+    const getComponentProps = (props, registry) => {
       let styles = Object.keys(styleRules).reduce((result, key) => {
         const clearKey = key.replace(/:\w+/g, '');
         const propValue = props[clearKey];
@@ -72,7 +73,7 @@ export const createStyled = ({
 
         if (propValue) {
           if (typeof styleRules[key] === 'function') {
-            result[compiledStyles.get(key, propValue)] = true;
+            result[compiledStyles.get(key, propValue, registry)] = true;
             return result;
           }
 
@@ -115,13 +116,27 @@ export const createStyled = ({
       return newProps;
     };
 
+
     const Styled = ({ as, ...props }) => {
       if (as && as.__IS_WRAPPER__) {
         const AsStyled = styled(as, styleRules);
         return createElement(AsStyled, props);
       }
 
-      return createElement(as ? as : tag || element, getComponentProps(props));
+      const getComponent = (registry) => createElement(as ? as : tag || element, getComponentProps(props, registry));
+
+      if (ContextConsumer) {
+        return createElement('div', null,  createElement(ContextConsumer, null, ({ sheetsRegistry } = {}) => {
+          if (sheetsRegistry) {
+            compiledStyles.register(sheetsRegistry);
+          }
+
+          return getComponent(sheetsRegistry);
+          // return component;
+        }));
+      }
+
+      return getComponent();
     };
 
     Styled.getRawStyles = () => ({ ...styleRules });

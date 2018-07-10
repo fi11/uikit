@@ -14,16 +14,10 @@ jss.use(nested());
 jss.use(vendorPrefixer());
 jss.use(jssCache());
 
-const sheets = new SheetsRegistry();
-export const getSSRStyleSheets = () => sheets.toString();
+export const createRegistry = () => new SheetsRegistry();
 
 export default class StyleSheet {
   static create(styles: Object) {
-    const sheet = jss.createStyleSheet(styles).attach();
-    sheets.add(sheet);
-
-    return sheet.classes;
+    return jss.createStyleSheet(styles).attach();
   }
-
-  static getSSRStyleSheets = getSSRStyleSheets;
 }

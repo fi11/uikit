@@ -7,7 +7,7 @@ const getCacheKey = (key, arg, id) => `${key}:${JSON.stringify(arg)}:${id}`;
 export const compileStyles = (elementName, styleRules, id) => {
   const styleRulesAsFunc = {};
 
-  const compiledRules = StyleSheet.create(
+  const sheets = StyleSheet.create(
     Object.keys(styleRules).reduce((result, key) => {
       const rule = styleRules[key];
       const container = typeof rule === 'object' ? result : styleRulesAsFunc;
@@ -18,19 +18,33 @@ export const compileStyles = (elementName, styleRules, id) => {
     }, {}),
   );
 
+  const compiledRules = sheets.classes;
+
   return {
-    get: (key, arg) => {
+    get: (key, arg, registry) => {
       if (arg) {
         const cacheKey = getCacheKey(key, arg, id);
+
         if (!cache[cacheKey]) {
-          return cache[cacheKey] = StyleSheet.create({
+          const sheets = StyleSheet.create({
             [key]: styleRulesAsFunc[getClassName(key)](arg),
-          })[key];
+          });
+
+          cache[cacheKey] = sheets.classes[key];
+          if (registry) {
+            registry.add(sheets);
+          }
+
+          return cache[cacheKey];
         }
 
         return cache[cacheKey];
       }
+
       return compiledRules[getClassName(key)];
     },
+    register(registry) {
+      registry.add(sheets);
+    }
   };
 };
