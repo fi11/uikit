@@ -1,6 +1,6 @@
 {
   "name": "@uikit/styled-react",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "description": "React dependency for styled lib",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -26,8 +26,8 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/styled": "^0.0.38",
-    "@uikit/stylesheet": "^0.0.39"
+    "@uikit/styled": "^0.0.40",
+    "@uikit/stylesheet": "^0.0.40"
   },
   "devDependencies": {
     "react": "^16.4.1"
