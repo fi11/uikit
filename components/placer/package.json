@@ -1,6 +1,6 @@
 {
   "name": "@uikit/placer",
-  "version": "0.0.37",
+  "version": "0.0.41",
   "description": "Placer component",
   "main": "lib/index.js",
   "module": "lib/index.js",
