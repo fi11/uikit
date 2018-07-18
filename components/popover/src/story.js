@@ -39,7 +39,7 @@ const yAxisWithTail = [
 
 const offsetForTail = [0, 14, -14, 100, -100, null];
 
-const Popup = ({ actions, isShown }) => (
+const Popup = ({ actions }) => (
   <div
     style={{
       padding: 10,
@@ -48,7 +48,6 @@ const Popup = ({ actions, isShown }) => (
     }}
   >
     <span>PopoverContent</span>
-    {isShown ? '😀' : ''}
     {'\u00a0'}
     <a
       href={'/'}
@@ -71,7 +70,18 @@ const Tail = ({ direction }) => (
 );
 
 const Settings = ({ children }) => (
-  <StateProvider>
+  <StateProvider
+    state={{
+      offsetX: 0,
+      offsetY: 14,
+      tail: {
+        direction: 'top',
+      },
+
+      xAxis: 'inside-left',
+      yAxis: 'outside-bottom',
+    }}
+  >
     {(state, setState) => (
       <div>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -245,7 +255,6 @@ storiesOf('Components/Popover', module)
             renderPopup={({
               isLeave,
               isAppear,
-                            isShown,
               tail: { direction, style },
               actions,
             }) => (
@@ -256,7 +265,7 @@ storiesOf('Components/Popover', module)
                   opacity: isLeave || isAppear ? 0 : 1,
                 }}
               >
-                <Popup actions={actions} isShown={isShown}/>
+                <Popup actions={actions} />
                 {direction && (
                   <div style={style}>
                     <Tail direction={direction} />
@@ -264,8 +273,8 @@ storiesOf('Components/Popover', module)
                 )}
               </div>
             )}
-            render={({ actions, isShown }) => (
-              <button onClick={() => actions.toggle()}>Click me {isShown ? '😀' : ''}</button>
+            render={({ actions }) => (
+              <button onClick={() => actions.toggle()}>Click me</button>
             )}
           />
         )}

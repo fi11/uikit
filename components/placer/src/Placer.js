@@ -23,8 +23,8 @@ const createPortalDomNode = () => {
 export default class Placer extends React.Component {
   static propTypes = {
     /**
-         * Position available presets
-         */
+     * Position available presets
+     */
     presets: PropTypes.arrayOf(
       PropTypes.shape({
         xAxis: PropTypes.oneOf([
@@ -46,8 +46,8 @@ export default class Placer extends React.Component {
       }),
     ),
     /**
-         * Custom target element params
-         */
+     * Custom target element params
+     */
     targetRect: PropTypes.shape({
       left: PropTypes.number,
       top: PropTypes.number,
@@ -55,16 +55,16 @@ export default class Placer extends React.Component {
       height: PropTypes.number,
     }),
     /**
-         * Z-index of root div
-         */
+     * Z-index of root div
+     */
     zIndex: PropTypes.number,
     /**
-         * Custom target element DOM node
-         */
+     * Custom target element DOM node
+     */
     targetDOMNode: PropTypes.object,
     /**
-         * Factor for detect best position preset
-         */
+     * Factor for detect best position preset
+     */
     viewportAccuracyFactor: PropTypes.number,
   };
 
@@ -91,7 +91,7 @@ export default class Placer extends React.Component {
     }
   }
 
-  _onWrapperMountHandler = (c) => {
+  _onWrapperMountHandler = c => {
     this._wrapperComponent = c;
   };
 
@@ -106,11 +106,9 @@ export default class Placer extends React.Component {
       return this.props.targetDOMNode.getBoundingClientRect();
     }
 
-
     const domNode = ReactDOM.findDOMNode(this);
     return domNode ? domNode.getBoundingClientRect() : null;
   };
-
 
   _getRootRect = () => {
     if (!this._portalDOMNode) {
@@ -128,24 +126,26 @@ export default class Placer extends React.Component {
       zIndex,
       children,
       content,
+      isShown = true,
     } = this.props;
     return (
       <Fragment>
         {this.props.render ? this.props.render() : children}
-        {ReactDOM.createPortal(
-          <Wrapper
-            zIndex={zIndex}
-            getTargetRect={this._getTargetRect}
-            getRootRect={this._getRootRect}
-            presets={presets}
-            viewportAccuracyFactor={viewportAccuracyFactor}
-            onDidMount={this._onWrapperMountHandler}
-            onPresetSelected={onPresetSelected}
-          >
-            {content}
-          </Wrapper>,
-          this._portalDOMNode,
-        )}
+        {isShown &&
+          ReactDOM.createPortal(
+            <Wrapper
+              zIndex={zIndex}
+              getTargetRect={this._getTargetRect}
+              getRootRect={this._getRootRect}
+              presets={presets}
+              viewportAccuracyFactor={viewportAccuracyFactor}
+              onDidMount={this._onWrapperMountHandler}
+              onPresetSelected={onPresetSelected}
+            >
+              {content}
+            </Wrapper>,
+            this._portalDOMNode,
+          )}
       </Fragment>
     );
   }

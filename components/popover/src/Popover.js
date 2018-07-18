@@ -6,7 +6,15 @@ import Placer from '@uikit/placer';
 import PopoverContent from './PopoverContent';
 
 class Popover extends React.Component {
-  state = { isShown: false, currentPreset: null };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isShown: !!props.isShown,
+      currentPreset: (props.presets || [])[0],
+    };
+
+    this._actions = this._getStateApi();
+  }
 
   componentDidMount() {
     this._selfRect = ReactDOM.findDOMNode(this).getBoundingClientRect();
@@ -45,7 +53,7 @@ class Popover extends React.Component {
       show: this.show,
       hide: this.hide,
       toggle: this.toggle,
-    }
+    };
   };
 
   render() {
@@ -54,34 +62,26 @@ class Popover extends React.Component {
 
     const render = this.props.render || this.props.children;
 
-    if (isShown) {
-      return (
-        <Placer
-          onPresetSelected={this._onPresetSelected}
-          presets={presets}
-          content={
-            <PopoverContent
-              {...this.props}
-              isShown={isShown}
-              getStateApi={this._getStateApi}
-              presets={
-                presets || [{ xAxis: 'middle', yAxis: 'outside-bottom' }]
-              }
-              targetRect={this._selfRect}
-              currentPreset={currentPreset}
-              onRequestClose={this.onRequestClose}
-            />
-          }
-        >
-          {render({ isShown, actions: this._getStateApi() })}
-        </Placer>
-      );
-    }
-
-    return render({
-      isShown,
-      actions: this._getStateApi(),
-    });
+    return (
+      <Placer
+        isShown={isShown}
+        onPresetSelected={this._onPresetSelected}
+        presets={presets}
+        content={
+          <PopoverContent
+            {...this.props}
+            isShown={isShown}
+            getStateApi={this._getStateApi}
+            presets={presets || [{ xAxis: 'middle', yAxis: 'outside-bottom' }]}
+            targetRect={this._selfRect}
+            currentPreset={currentPreset}
+            onRequestClose={this.onRequestClose}
+          />
+        }
+      >
+        {render({ isShown, actions: this._actions })}
+      </Placer>
+    );
   }
 }
 

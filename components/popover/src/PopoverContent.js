@@ -15,15 +15,18 @@ const RectShapePropType = PropTypes.shape({
   height: PropTypes.number,
 });
 
+const emptyTailParams = {};
+
 class PopoverContent extends React.Component {
   componentDidMount() {
     this._selfDOMNode = ReactDOM.findDOMNode(this);
+    this._actions = this.props.getStateApi();
   }
 
   renderPopup = ({ isEnter, isLeave, isUpdate, isAppear, isInit }) => {
     const { renderPopup, currentPreset, tailSize, isShown } = this.props;
 
-    let params = {};
+    let params = emptyTailParams;
     if (currentPreset) {
       params = getTailParams({
         selfRect: this.getSelfRect(),
@@ -41,7 +44,7 @@ class PopoverContent extends React.Component {
       isInit,
       tail: params,
       isShown,
-      actions: this.props.getStateApi(),
+      actions: this._actions,
     });
   };
 
