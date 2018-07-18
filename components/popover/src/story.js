@@ -39,7 +39,7 @@ const yAxisWithTail = [
 
 const offsetForTail = [0, 14, -14, 100, -100, null];
 
-const Popup = ({ actions }) => (
+const Popup = ({ actions, targetRect }) => (
   <div
     style={{
       padding: 10,
@@ -47,7 +47,11 @@ const Popup = ({ actions }) => (
       boxShadow: '0 6px 24px rgba(114, 125, 129, .75)',
     }}
   >
-    <span>PopoverContent</span>
+    <span>
+      PopoverContent, target size is: {targetRect ? targetRect.width : 0}x{targetRect
+        ? targetRect.height
+        : 0}
+    </span>
     {'\u00a0'}
     <a
       href={'/'}
@@ -256,6 +260,7 @@ storiesOf('Components/Popover', module)
               isLeave,
               isAppear,
               tail: { direction, style },
+              targetRect,
               actions,
             }) => (
               <div
@@ -265,7 +270,7 @@ storiesOf('Components/Popover', module)
                   opacity: isLeave || isAppear ? 0 : 1,
                 }}
               >
-                <Popup actions={actions} />
+                <Popup actions={actions} targetRect={targetRect} />
                 {direction && (
                   <div style={style}>
                     <Tail direction={direction} />

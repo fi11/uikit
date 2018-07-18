@@ -25,12 +25,13 @@ class PopoverContent extends React.Component {
 
   renderPopup = ({ isEnter, isLeave, isUpdate, isAppear, isInit }) => {
     const { renderPopup, currentPreset, tailSize, isShown } = this.props;
-
+    const targetRect = this.getTargetRect();
     let params = emptyTailParams;
+
     if (currentPreset) {
       params = getTailParams({
         selfRect: this.getSelfRect(),
-        targetRect: this.getTargetRect(),
+        targetRect,
         currentPreset,
         tailSize,
       });
@@ -44,6 +45,7 @@ class PopoverContent extends React.Component {
       isInit,
       tail: params,
       isShown,
+      targetRect,
       actions: this._actions,
     });
   };
@@ -55,9 +57,7 @@ class PopoverContent extends React.Component {
   }
 
   getTargetRect() {
-    const { targetRect } = this.props;
-
-    return targetRect;
+    return this.props.targetRect;
   }
 
   render() {
