@@ -21,7 +21,7 @@ class PopoverContent extends React.Component {
   }
 
   renderPopup = ({ isEnter, isLeave, isUpdate, isAppear, isInit }) => {
-    const { renderPopup, currentPreset, tailSize } = this.props;
+    const { renderPopup, currentPreset, tailSize, isShown } = this.props;
 
     let params = {};
     if (currentPreset) {
@@ -40,6 +40,7 @@ class PopoverContent extends React.Component {
       isAppear,
       isInit,
       tail: params,
+      isShown,
       actions: this.props.getStateApi(),
     });
   };

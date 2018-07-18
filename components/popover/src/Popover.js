@@ -73,15 +73,14 @@ class Popover extends React.Component {
             />
           }
         >
-          {render(this._getStateApi())}
+          {render({ isShown, actions: this._getStateApi() })}
         </Placer>
       );
     }
 
     return render({
-      show: this.show,
-      hide: this.hide,
-      toggle: this.toggle,
+      isShown,
+      actions: this._getStateApi(),
     });
   }
 }

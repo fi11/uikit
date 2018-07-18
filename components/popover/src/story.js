@@ -39,7 +39,7 @@ const yAxisWithTail = [
 
 const offsetForTail = [0, 14, -14, 100, -100, null];
 
-const Popup = ({ actions }) => (
+const Popup = ({ actions, isShown }) => (
   <div
     style={{
       padding: 10,
@@ -48,6 +48,7 @@ const Popup = ({ actions }) => (
     }}
   >
     <span>PopoverContent</span>
+    {isShown ? '😀' : ''}
     {'\u00a0'}
     <a
       href={'/'}
@@ -244,6 +245,7 @@ storiesOf('Components/Popover', module)
             renderPopup={({
               isLeave,
               isAppear,
+                            isShown,
               tail: { direction, style },
               actions,
             }) => (
@@ -254,7 +256,7 @@ storiesOf('Components/Popover', module)
                   opacity: isLeave || isAppear ? 0 : 1,
                 }}
               >
-                <Popup actions={actions} />
+                <Popup actions={actions} isShown={isShown}/>
                 {direction && (
                   <div style={style}>
                     <Tail direction={direction} />
@@ -262,8 +264,8 @@ storiesOf('Components/Popover', module)
                 )}
               </div>
             )}
-            render={({ toggle }) => (
-              <button onClick={() => toggle()}>Click me</button>
+            render={({ actions, isShown }) => (
+              <button onClick={() => actions.toggle()}>Click me {isShown ? '😀' : ''}</button>
             )}
           />
         )}
