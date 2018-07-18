@@ -40,6 +40,7 @@ class PopoverContent extends React.Component {
       isAppear,
       isInit,
       tail: params,
+      actions: this.props.getStateApi(),
     });
   };
 

@@ -28,7 +28,6 @@
   "author": "Pavel Silin",
   "license": "MIT",
   "dependencies": {
-    "@uikit/teleport": "^0.0.37",
     "@uikit/utils": "^0.0.23",
     "raf": "3.4.0"
   },

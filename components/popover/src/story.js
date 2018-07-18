@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, text, number } from '@storybook/addon-knobs';
 import Popover from './index';
 import StateProvider from '@uikit/state-provider';
-import { TeleportContext } from '@uikit/teleport';
 import BaseTail from '@uikit/tail';
 
 const xAxis = [
@@ -40,7 +39,7 @@ const yAxisWithTail = [
 
 const offsetForTail = [0, 14, -14, 100, -100, null];
 
-const Popup = () => (
+const Popup = ({ actions }) => (
   <div
     style={{
       padding: 10,
@@ -49,6 +48,16 @@ const Popup = () => (
     }}
   >
     <span>PopoverContent</span>
+    {'\u00a0'}
+    <a
+      href={'/'}
+      onClick={e => {
+        e.preventDefault();
+        actions.hide();
+      }}
+    >
+      close
+    </a>
   </div>
 );
 
@@ -81,7 +90,8 @@ const Settings = ({ children }) => (
                             tail: { direction: preset.direction },
                           },
                         ),
-                      )}
+                      )
+                    }
                   />
                   {preset.xAxis}
                 </label>
@@ -104,7 +114,8 @@ const Settings = ({ children }) => (
                             tail: { direction: preset.direction },
                           },
                         ),
-                      )}
+                      )
+                    }
                   />
                   {preset.yAxis}
                 </label>
@@ -150,7 +161,8 @@ const Settings = ({ children }) => (
                     type="radio"
                     name="xTailOffset"
                     onClick={() =>
-                      setState(Object.assign({ xTailOffset: value }))}
+                      setState(Object.assign({ xTailOffset: value }))
+                    }
                   />
                   {value === null ? 'null' : value}
                 </label>
@@ -166,7 +178,8 @@ const Settings = ({ children }) => (
                     type="radio"
                     name="yTailOffset"
                     onClick={() =>
-                      setState(Object.assign({ yTailOffset: value }))}
+                      setState(Object.assign({ yTailOffset: value }))
+                    }
                   />
                   {value === null ? 'null' : value}
                 </label>
@@ -191,7 +204,8 @@ const Settings = ({ children }) => (
               type="checkbox"
               checked={state.isAutoClosable}
               onClick={() =>
-                setState({ isAutoClosable: !state.isAutoClosable })}
+                setState({ isAutoClosable: !state.isAutoClosable })
+              }
             />
           </label>
         </div>
@@ -204,16 +218,15 @@ const Settings = ({ children }) => (
 storiesOf('Components/Popover', module)
   .addDecorator(withKnobs)
   .add('main', () => (
-    <TeleportContext>
-      <div style={{ padding: 60 }}>
-        <Settings>
-          {(state, setState) => (
-            <Popover
-              isAutoClosable={state.isAutoClosable}
-              tailSize={14}
-              presets={
-                state.xAxis && state.yAxis ? (
-                  [
+    <div style={{ padding: 60 }}>
+      <Settings>
+        {(state, setState) => (
+          <Popover
+            isAutoClosable={state.isAutoClosable}
+            tailSize={14}
+            presets={
+              state.xAxis && state.yAxis
+                ? [
                     {
                       xAxis: state.xAxis,
                       yAxis: state.yAxis,
@@ -226,38 +239,34 @@ storiesOf('Components/Popover', module)
                       },
                     },
                   ]
-                ) : null
-              }
-              renderPopup={({
-                isLeave,
-                isAppear,
-                tail: { direction, style },
-              }) => (
-                <div
-                  style={{
-                    position: 'relative',
-                    transition: 'all 0.25s ease-out',
-                    opacity: isLeave || isAppear ? 0 : 1,
-                  }}
-                >
-                  <Popup />
-                  {direction && (
-                    <div style={style}>
-                      <Tail
-                        direction={direction}
-                        c={console.log('TAIL', direction)}
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
-            >
-              {({ toggle }) => (
-                <button onClick={() => toggle()}>Click me</button>
-              )}
-            </Popover>
-          )}
-        </Settings>
-      </div>
-    </TeleportContext>
+                : null
+            }
+            renderPopup={({
+              isLeave,
+              isAppear,
+              tail: { direction, style },
+              actions,
+            }) => (
+              <div
+                style={{
+                  position: 'relative',
+                  transition: 'all 0.5s ease-out',
+                  opacity: isLeave || isAppear ? 0 : 1,
+                }}
+              >
+                <Popup actions={actions} />
+                {direction && (
+                  <div style={style}>
+                    <Tail direction={direction} />
+                  </div>
+                )}
+              </div>
+            )}
+            render={({ toggle }) => (
+              <button onClick={() => toggle()}>Click me</button>
+            )}
+          />
+        )}
+      </Settings>
+    </div>
   ));

@@ -31,7 +31,6 @@
     "@uikit/autoclosable": "^0.0.37",
     "@uikit/placer": "^0.0.37",
     "@uikit/tail": "^0.0.38",
-    "@uikit/teleport": "^0.0.37",
     "@uikit/transition": "^0.0.37"
   },
   "peerDependencies": {

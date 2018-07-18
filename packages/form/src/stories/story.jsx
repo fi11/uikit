@@ -3,7 +3,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { createContainer, createFieldContainer, createFormContainer } from '../index';
-import Form from './Form';
 import TextField from './TextField';
 import Button from './Button';
 import schema from './schema';
@@ -25,6 +24,7 @@ const Submit = createContainer(Button, (form, { title, isDisabledOnInvalid = tru
 
 const ShowValues = createContainer(Button, (form, { title } = {}) => ({
   title: title || 'Show values',
+
   onClick: () => {
     console.log('values', form.getValues());
   },

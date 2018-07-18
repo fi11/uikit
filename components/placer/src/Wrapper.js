@@ -160,18 +160,6 @@ export default class PlacerWrapper extends React.Component {
     onDidMount: PropTypes.func,
   };
 
-  static contextTypes = {
-    teleport: PropTypes.shape({
-      move: PropTypes.func,
-      remove: PropTypes.func,
-      update: PropTypes.func,
-      isAdded: PropTypes.func,
-      getRootDOMNode: PropTypes.func,
-      getBoundingClientRect: PropTypes.func,
-      getContextLevel: PropTypes.func,
-    }),
-  };
-
   constructor(props, ...args) {
     super(props, ...args);
 
@@ -237,7 +225,7 @@ export default class PlacerWrapper extends React.Component {
       visibility: 'visible',
     };
 
-    if (!this._isNewPreseEqualEqula(bestPreset)) {
+    if (!this.isNewPresetEqual(bestPreset)) {
       onPresetSelected && onPresetSelected(bestPreset);
 
       this.setState(
@@ -253,7 +241,7 @@ export default class PlacerWrapper extends React.Component {
     }
   }
 
-  _isNewPreseEqualEqula(nextPreset) {
+  isNewPresetEqual(nextPreset) {
     const preset = this.state.currentPreset || {};
 
     return (
@@ -320,9 +308,7 @@ export default class PlacerWrapper extends React.Component {
 
   _getArgumentsForPositionCalculation() {
     const placeableRect = this._getPlaceableRect();
-    const rootRect = this.context.teleport
-      .getRootDOMNode()
-      .getBoundingClientRect();
+    const rootRect = this.props.getRootRect();
 
     return [this.props.getTargetRect(), placeableRect, rootRect];
   }
@@ -351,7 +337,7 @@ export default class PlacerWrapper extends React.Component {
     return (
       <div
         style={{
-          zIndex: this.context.teleport.getContextLevel() + props.zIndex,
+          zIndex: props.zIndex,
           visibility: 'hidden',
           position: 'absolute',
           transform: 'translate3d(0, 0, 0)',

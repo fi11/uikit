@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { TeleportContext } from '@uikit/teleport';
 
 import StateProvider from '@uikit/state-provider';
 
@@ -27,129 +26,92 @@ const Placeable = () => (
 );
 
 storiesOf('Placer', module)
+  .addDecorator(fn => (
+  <div style={{ margin: '40px' }}>
+    {fn()}
+  </div>
+  ))
   .add('Y axis outside top', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[{ xAxis: 'middle', yAxis: 'outside-top' }]}
           content={<Placeable />}
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('Y axis outside bottom', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[{ xAxis: 'middle', yAxis: 'outside-bottom' }]}
           content={<Placeable />}
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('Y axis middle', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[{ xAxis: 'middle', yAxis: 'middle' }]}
           content={<Placeable />}
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('Y axis inside top', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[{ xAxis: 'middle', yAxis: 'inside-top' }]}
           content={<Placeable />}
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('Y axis inside bottom', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[{ xAxis: 'middle', yAxis: 'inside-bottom' }]}
           content={<Placeable />}
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('X axis outside left', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[{ xAxis: 'outside-left', yAxis: 'middle' }]}
           content={<Placeable />}
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('X axis outside right', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[{ xAxis: 'outside-right', yAxis: 'middle' }]}
           content={<Placeable />}
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('X axis middle', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[{ xAxis: 'middle', yAxis: 'middle' }]}
           content={<Placeable />}
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('X axis inside left', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[{ xAxis: 'inside-left', yAxis: 'middle' }]}
           content={<Placeable />}
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('X axis inside right', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[{ xAxis: 'inside-right', yAxis: 'middle' }]}
           content={<Placeable />}
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('Auto position left top corner', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[
             { xAxis: 'inside-right', yAxis: 'outside-top' },
@@ -160,12 +122,8 @@ storiesOf('Placer', module)
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('Auto position right top corner', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[
             { xAxis: 'inside-left', yAxis: 'outside-top' },
@@ -176,12 +134,8 @@ storiesOf('Placer', module)
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('Auto position left bottom corner', () => (
-    <TeleportContext>
-      <div style={{ margin: '40px' }}>
         <Placer
           presets={[
             { xAxis: 'inside-right', yAxis: 'outside-bottom' },
@@ -191,12 +145,8 @@ storiesOf('Placer', module)
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('Auto position right bottom corner', () => (
-    <TeleportContext>
-      <div style={{ margin: 0 }}>
         <Placer
           presets={[
             { xAxis: 'inside-left', yAxis: 'outside-bottom' },
@@ -206,12 +156,8 @@ storiesOf('Placer', module)
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('Position with scroll', () => (
-    <TeleportContext>
-      <div style={{ margin: '900px 0' }}>
         <Placer
           presets={[
             { xAxis: 'inside-left', yAxis: 'outside-bottom' },
@@ -221,12 +167,9 @@ storiesOf('Placer', module)
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('Position with inner scroll', () => (
-    <TeleportContext>
-      <div style={{ margin: 0, width: 300, height: 300, overflow: 'scroll' }}>
+      <div style={{ margin: 0, width: 300, height: 200, overflow: 'scroll' }}>
         <div style={{ margin: '300px 100px' }}>
           <Placer
             presets={[
@@ -239,11 +182,8 @@ storiesOf('Placer', module)
           </Placer>
         </div>
       </div>
-    </TeleportContext>
   ))
   .add('Custom offsets', () => (
-    <TeleportContext>
-      <div style={{ margin: 40 }}>
         <Placer
           presets={[
             {
@@ -257,11 +197,8 @@ storiesOf('Placer', module)
         >
           <Target />
         </Placer>
-      </div>
-    </TeleportContext>
   ))
   .add('Custom position', () => (
-    <TeleportContext>
       <div>
         <StateProvider>
           {(state, setState) => (
@@ -313,5 +250,4 @@ storiesOf('Placer', module)
           )}
         </StateProvider>
       </div>
-    </TeleportContext>
   ));

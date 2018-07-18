@@ -2,10 +2,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import Placer from '@uikit/placer';
 import PopoverContent from './PopoverContent';
-import Transition from '@uikit/transition';
 
 class Popover extends React.Component {
   state = { isShown: false, currentPreset: null };
@@ -42,9 +40,19 @@ class Popover extends React.Component {
     });
   };
 
+  _getStateApi = () => {
+    return {
+      show: this.show,
+      hide: this.hide,
+      toggle: this.toggle,
+    }
+  };
+
   render() {
     const { isShown, currentPreset } = this.state;
     const { presets } = this.props;
+
+    const render = this.props.render || this.props.children;
 
     if (isShown) {
       return (
@@ -55,6 +63,7 @@ class Popover extends React.Component {
             <PopoverContent
               {...this.props}
               isShown={isShown}
+              getStateApi={this._getStateApi}
               presets={
                 presets || [{ xAxis: 'middle', yAxis: 'outside-bottom' }]
               }
@@ -64,16 +73,12 @@ class Popover extends React.Component {
             />
           }
         >
-          {this.props.children({
-            show: this.show,
-            hide: this.hide,
-            toggle: this.toggle,
-          })}
+          {render(this._getStateApi())}
         </Placer>
       );
     }
 
-    return this.props.children({
+    return render({
       show: this.show,
       hide: this.hide,
       toggle: this.toggle,

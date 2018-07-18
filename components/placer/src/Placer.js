@@ -1,11 +1,24 @@
 'use strict';
 
-import PropTypes from 'prop-types';
-
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import Teleport from '@uikit/teleport';
-import PlacerWrapper from './PlacerWrapper';
+import PropTypes from 'prop-types';
+import Wrapper from './Wrapper';
+
+const createPortalDomNode = () => {
+  if (typeof document === 'undefined') {
+    return null;
+  }
+
+  const domNode = document.createElement('div');
+  domNode.style.position = 'absolute';
+  domNode.style.top = '0px';
+  domNode.style.left = '0px';
+
+  document.body.appendChild(domNode);
+
+  return domNode;
+};
 
 export default class Placer extends React.Component {
   static propTypes = {
@@ -60,37 +73,29 @@ export default class Placer extends React.Component {
     viewportAccuracyFactor: 0.9,
   };
 
-  static contextTypes = {
-    teleport: PropTypes.shape({
-      move: PropTypes.func,
-      remove: PropTypes.func,
-      update: PropTypes.func,
-      isAdded: PropTypes.func,
-      getRootDOMNode: PropTypes.func,
-      getBoundingClientRect: PropTypes.func,
-      getContextLevel: PropTypes.func,
-    }),
-  };
-
   constructor(props, ...args) {
     super(props, ...args);
-
-    this._teleportComponent = null;
-    this._parentDOMNodeWithScroll = null;
-    this._onWrapperMountHandler = this._onWrapperMountHandler.bind(this);
-    this._onTeleportMountHandler = this._onTeleportMountHandler.bind(this);
-    this._getTargetRect = this._getTargetRect.bind(this);
+    this._portalDOMNode = null;
   }
 
-  _onWrapperMountHandler(c) {
+  componentWillMount() {
+    if (typeof document !== 'undefined' && !this._portalDOMNode) {
+      this._portalDOMNode = createPortalDomNode();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._portalDOMNode) {
+      this._portalDOMNode.remove();
+      this._portalDOMNode = null;
+    }
+  }
+
+  _onWrapperMountHandler = (c) => {
     this._wrapperComponent = c;
-  }
+  };
 
-  _onTeleportMountHandler(c) {
-    this._teleportComponent = c;
-  }
-
-  _getTargetRect() {
+  _getTargetRect = () => {
     const props = this.props;
 
     if (props.targetRect) {
@@ -101,13 +106,19 @@ export default class Placer extends React.Component {
       return this.props.targetDOMNode.getBoundingClientRect();
     }
 
-    if (!this._teleportComponent) {
-      return null;
-    }
 
     const domNode = ReactDOM.findDOMNode(this);
     return domNode ? domNode.getBoundingClientRect() : null;
-  }
+  };
+
+
+  _getRootRect = () => {
+    if (!this._portalDOMNode) {
+      return null;
+    }
+
+    return this._portalDOMNode.getBoundingClientRect();
+  };
 
   render() {
     const {
@@ -120,19 +131,21 @@ export default class Placer extends React.Component {
     } = this.props;
     return (
       <Fragment>
-        {children}
-        <Teleport ref={this._onTeleportMountHandler}>
-          <PlacerWrapper
+        {this.props.render ? this.props.render() : children}
+        {ReactDOM.createPortal(
+          <Wrapper
             zIndex={zIndex}
             getTargetRect={this._getTargetRect}
+            getRootRect={this._getRootRect}
             presets={presets}
             viewportAccuracyFactor={viewportAccuracyFactor}
             onDidMount={this._onWrapperMountHandler}
             onPresetSelected={onPresetSelected}
           >
             {content}
-          </PlacerWrapper>
-        </Teleport>
+          </Wrapper>,
+          this._portalDOMNode,
+        )}
       </Fragment>
     );
   }
