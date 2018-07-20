@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import Placer from '@uikit/placer';
 import PopoverContent from './PopoverContent';
 
-class Popover extends React.Component {
+export class Popover extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

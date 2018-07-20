@@ -4,6 +4,7 @@ import { withKnobs, boolean, text, number } from '@storybook/addon-knobs';
 import Popover from './index';
 import StateProvider from '@uikit/state-provider';
 import BaseTail from '@uikit/tail';
+import { PlacerContext } from '@uikit/placer';
 
 const xAxis = [
   { xAxis: 'outside-left' },

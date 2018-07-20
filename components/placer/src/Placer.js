@@ -3,24 +3,9 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import Wrapper from './Wrapper';
+import { PlacerPortal } from './Portal';
 
-const createPortalDomNode = () => {
-  if (typeof document === 'undefined') {
-    return null;
-  }
-
-  const domNode = document.createElement('div');
-  domNode.style.position = 'absolute';
-  domNode.style.top = '0px';
-  domNode.style.left = '0px';
-
-  document.body.appendChild(domNode);
-
-  return domNode;
-};
-
-export default class Placer extends React.Component {
+export class Placer extends React.Component {
   static propTypes = {
     /**
      * Position available presets
@@ -78,44 +63,9 @@ export default class Placer extends React.Component {
     this._portalDOMNode = null;
   }
 
-  componentWillMount() {
-    if (typeof document !== 'undefined' && !this._portalDOMNode) {
-      this._portalDOMNode = createPortalDomNode();
-    }
-  }
-
-  componentWillUnmount() {
-    if (this._portalDOMNode) {
-      this._portalDOMNode.remove();
-      this._portalDOMNode = null;
-    }
-  }
-
-  _onWrapperMountHandler = c => {
-    this._wrapperComponent = c;
-  };
-
-  _getTargetRect = () => {
-    const props = this.props;
-
-    if (props.targetRect) {
-      return props.targetRect;
-    }
-
-    if (props.targetDOMNode) {
-      return this.props.targetDOMNode.getBoundingClientRect();
-    }
-
+  _getSelfReact = () => {
     const domNode = ReactDOM.findDOMNode(this);
     return domNode ? domNode.getBoundingClientRect() : null;
-  };
-
-  _getRootRect = () => {
-    if (!this._portalDOMNode) {
-      return null;
-    }
-
-    return this._portalDOMNode.getBoundingClientRect();
   };
 
   render() {
@@ -124,29 +74,32 @@ export default class Placer extends React.Component {
       presets,
       viewportAccuracyFactor,
       zIndex,
-      children,
       content,
+      targetRect,
+      targetDOMNode,
       isShown = true,
+      children,
+      render,
     } = this.props;
+
     return (
       <Fragment>
-        {this.props.render ? this.props.render() : children}
-        {isShown &&
-          ReactDOM.createPortal(
-            <Wrapper
-              zIndex={zIndex}
-              getTargetRect={this._getTargetRect}
-              getRootRect={this._getRootRect}
-              presets={presets}
-              viewportAccuracyFactor={viewportAccuracyFactor}
-              onDidMount={this._onWrapperMountHandler}
-              onPresetSelected={onPresetSelected}
-            >
-              {content}
-            </Wrapper>,
-            this._portalDOMNode,
-          )}
+        {render ? render() : children}
+        <PlacerPortal
+          isShown={isShown}
+          zIndex={zIndex}
+          presets={presets}
+          viewportAccuracyFactor={viewportAccuracyFactor}
+          onPresetSelected={onPresetSelected}
+          getParentReact={this._getSelfReact}
+          targetRect={targetRect}
+          targetDOMNode={targetDOMNode}
+        >
+          {content}
+        </PlacerPortal>
       </Fragment>
     );
   }
 }
+
+export default Placer;
