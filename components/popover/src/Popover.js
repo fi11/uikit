@@ -17,7 +17,8 @@ export class Popover extends React.Component {
   }
 
   componentDidMount() {
-    this._selfRect = ReactDOM.findDOMNode(this).getBoundingClientRect();
+    this._selfDOMNode = ReactDOM.findDOMNode(this);
+    this._selfRect = this._selfDOMNode.getBoundingClientRect();
   }
 
   toggle = () => {
@@ -60,6 +61,10 @@ export class Popover extends React.Component {
     };
   };
 
+  _getControlDOMNode = () => {
+    return this._selfDOMNode || null;
+  };
+
   render() {
     const { isShown, currentPreset } = this.state;
     const { presets } = this.props;
@@ -79,6 +84,7 @@ export class Popover extends React.Component {
             presets={presets || [{ xAxis: 'middle', yAxis: 'outside-bottom' }]}
             targetRect={this._selfRect}
             currentPreset={currentPreset}
+            getControlDOMNode={this._getControlDOMNode}
             onRequestClose={this.onRequestClose}
           />
         }

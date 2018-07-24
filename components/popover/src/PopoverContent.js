@@ -61,10 +61,14 @@ class PopoverContent extends React.Component {
   }
 
   render() {
-    const { isShown } = this.props;
+    const { isShown, getControlDOMNode } = this.props;
+    const controlDOMNode = getControlDOMNode();
 
     return (
-      <AutoClosable onRequestClose={this.props.onRequestClose}>
+      <AutoClosable
+        parentDOMNode={controlDOMNode}
+        onRequestClose={this.props.onRequestClose}
+      >
         <Transition>{isShown ? this.renderPopup : null}</Transition>
       </AutoClosable>
     );
