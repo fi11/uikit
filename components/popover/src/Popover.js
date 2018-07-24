@@ -33,11 +33,15 @@ export class Popover extends React.Component {
   };
 
   hide = () => {
-    this.setState({ isShown: false });
+    const { onDidClose } = this.props;
+    this.setState({ isShown: false }, () => {
+      onDidClose && onDidClose();
+    });
   };
 
   onRequestClose = () => {
-    if (this.props.isAutoClosable) {
+    const { isAutoClosable} = this.props;
+    if (isAutoClosable) {
       this.hide();
     }
   };

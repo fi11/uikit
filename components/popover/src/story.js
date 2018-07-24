@@ -238,6 +238,9 @@ storiesOf('Components/Popover', module)
       <Settings>
         {(state, setState) => (
           <Popover
+            onDidClose={() => {
+              console.log('onDidClose');
+            }}
             isAutoClosable={state.isAutoClosable}
             tailSize={14}
             presets={
