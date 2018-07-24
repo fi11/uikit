@@ -2,10 +2,22 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import propTypes from 'prop-types';
 import Placer from '@uikit/placer';
 import PopoverContent from './PopoverContent';
 
 export class Popover extends React.Component {
+  static propTypes = {
+    isShown: propTypes.bool,
+    isAutoClosable: propTypes.bool,
+    presets: Placer.propTypes.presets,
+    render: propTypes.func,
+    children: propTypes.func,
+    onDidClose: propTypes.func,
+    renderPopup: propTypes.func,
+    tailSize: propTypes.number,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
